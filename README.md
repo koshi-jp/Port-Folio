@@ -22,7 +22,7 @@
 とてもいい写真が撮れたのでいろんな人に見てほしい時!
 
 ## 設計書
-<>
+<https://app.diagrams.net/#G1eaemwyHdgfx_ibAl-ChQqX9a2ERANoBF>
 
 ## チャレンジ要素一覧
 <https://docs.google.com/spreadsheets/d/1P8LhEI8F4tBlra7_bNPJIssAHV0Ch71qymKLthOOaSE/edit#gid=0>
