@@ -67,7 +67,7 @@ gem 'devise'
 gem 'devise-i18n'
 
 # レイアウト編集
-gem 'bootstrap', '~> 4.5'
+gem 'bootstrap'
 gem 'jquery-rails'
 
 # 画像投稿用gem
@@ -83,4 +83,3 @@ gem 'pry-byebug'
 
 # 環境変数の管理
 gem 'dotenv-rails'
-
