@@ -1,0 +1,47 @@
+<div class="row">
+      <div class="col-sm-12">
+
+        <h3 class="col-sm-2 bg-light">会員情報編集</h3>
+
+        <%= form_with(model:@member, url: {controller: 'members', action: 'update' }, local: true ,method: :patch) do |f| %>
+
+          <div class="edit-form">
+            <div class="form-group col-sm-12">
+              <%= f.label :"氏名", class: "col-sm-3 control-label" %>
+              <%= f.text_field :name, class: "col-sm-3 form-control-static name" %>
+            </div>
+
+            <div class="form-group col-sm-12">
+              <%= f.label :"ニックネーム", class: "col-sm-3 control-label" %>
+              <%= f.text_field :nickname, class: "col-sm-3 form-control-static name" %>
+            </div>
+
+            <div class="form-group col-sm-12">
+              <%= f.label :"プロフィール画像", class: "col-sm-3 control-label" %>
+              <%= f.attachment_field :image, class: "col-sm-3 form-control-static"%>
+            </div>
+
+            <div class="form-group col-sm-12">
+              <%= f.label :"今一番プレイしているゲーム", class: "col-sm-3 control-label" %>
+              <%= f.text_field :playing_now, class: "col-sm-5 form-control-static" %>
+            </div>
+
+            <div class="form-group col-sm-12">
+              <%= f.label :"自己紹介", class: "col-sm-3 control-label" %>
+              <%= f.text_area :introduction, class: "col-sm-7 form-control-static" %>
+            </div>
+          </div>
+
+            <div class="form-group col-sm-12">
+              <%= f.label :"メールアドレス", class: "col-sm-3 control-label" %>
+              <%= f.email_field :email, autocomplete: "email", class: "col-sm-6 form-control-static" %>
+            </div>
+
+
+          <div class="col-sm-9 col-sm-offset-3">
+            <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+            <%= link_to '退会する', members_unsubscribe_path, class: "btn btn-danger offset-sm-2" %>
+          </div>
+        <% end %>
+     </div>
+   </div>

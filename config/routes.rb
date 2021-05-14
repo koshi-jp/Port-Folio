@@ -39,11 +39,10 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root :to => 'homes#top'
-    # resources :cart_items, only: [:index, :update, :destroy, :create]
-    # get 'customers/my_page' => 'customers#show'
-    # resource :customers, only: [:edit, :update]
-    # get 'customers/unsubscribe'
-    # patch 'customers/withdraw'
+    get 'members/my_page' => 'members#show'
+    resource :members, only: [:edit, :update]
+    get 'members/unsubscribe'
+    patch 'members/withdraw'
     # get 'orders/complete' => 'orders#complete', as: 'orders_complete'
     # resources :orders, only: [:new, :create, :index, :show]
     # post 'orders/confirm'

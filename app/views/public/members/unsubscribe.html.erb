@@ -1,0 +1,21 @@
+ <div class="row">
+    <div class="col col-md-6 offset-md-3">
+        <h2 class="text-center">本当に退会しますか？</h2><br>
+    </div>
+
+    <div class="col col-md-6 offset-md-3">
+        <p class="text-center">退会すると、会員登録情報や、</p><br>
+        <p class="text-center">これまでの投稿が編集できなくなります。</p><br>
+        <p class="text-center">退会する場合は、「退会する」をクリックしてください。</p>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="col col-sm-3 offset-md-4 align-self-center">
+        <%= link_to "退会しない", members_path, class:"btn btn-primary" %>
+      </div>
+
+      <div class="col col-sm-3 align-self-center">
+        <%= link_to "退会する", members_withdraw_path, method: :patch, class:"btn btn-danger", data: { confirm: '本当に退会してよろしいですか？' } %>
+      </div>
+    </div>
