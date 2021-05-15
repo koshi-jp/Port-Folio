@@ -1,0 +1,23 @@
+<div class='info'>
+  <table class='table'>
+
+    <tr><%= attachment_image_tag(member, :image, :fill, 100, 100) %></tr>
+    <tr>
+  	  <th>name</th>
+  	  <th><%= member.nickname %></th>
+    </tr>
+    <tr>
+      <th>今一番ハマっているゲーム</th>
+      <th><%= member.playing_now %></th>
+    </tr>
+    <tr>
+  	  <th>introduction</th>
+  	  <th><%= member.introduction %></th>
+    </tr>
+
+  </table>
+
+  <div class='row'>
+    <%= link_to '',edit_member_path(member),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{member.id}" %>
+  </div>
+</div>

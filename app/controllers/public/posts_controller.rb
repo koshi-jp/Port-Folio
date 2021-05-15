@@ -5,6 +5,8 @@ class Public::PostsController < ApplicationController
   end
 
   def  show
+    @member = Member.find(params[:id])
+    @posts = Post.all
   end
 
   def  new

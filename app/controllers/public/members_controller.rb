@@ -4,6 +4,8 @@ class Public::MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :withdraw]
 
   def show
+    @member = Member.find(params[:id])
+    @posts = @member.posts.all
   end
 
   def edit
