@@ -1,0 +1,15 @@
+<div class=row>
+  <% @posts.each do |post| %>
+  <div class="d-flex p-2 bd-highlight offset-md-3">
+    <%= attachment_image_tag post, :image, :fill, 300, 300 %>
+    <div class="d-flex flex-column bd-highlight mb-5">
+      <a>
+        ユーザーネーム：<%= post.member.nickname %>
+        <%= attachment_image_tag post.member, :image, :fill, 40, 40 %>
+      </a>
+      <a>タイトル：<%= post.title %></a><br>
+      <a>本文：<%= post.body %></a><br>
+    </div>
+  </div>
+  <% end %>
+</div>
