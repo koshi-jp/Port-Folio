@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <%= form_with model:@post, url:'/posts', local:true do |f| %>
+      <form>
+        <div class="form-group">
+        <h4>タイトル</h4>
+        <%= f.text_field :title %>
+        </div>
+
+        <div class="form-group">
+        <h4>本文</h4>
+        <%= f.text_area :body %>
+        </div>
+
+        <div class="form-group">
+        <h4>投稿画像</h4>
+        <%= f.attachment_field :image, class: "col-sm-3 form-control-static" %>
+        </div>
+
+        <div class="form-group">
+        <h4>タグ付け</h4>
+        <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control-static" %>
+        </div>
+
+        <%= f.submit '投稿' %>
+      </form>
+    <% end %>
+  </div>
+</div>

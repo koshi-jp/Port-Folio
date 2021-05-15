@@ -1,9 +1,11 @@
 class Public::MembersController < ApplicationController
   before_action :authenticate_member!
-  # ストロングパラメーターの受け渡し
+  # ログインしているメンバーのパラメータ受け渡し
   before_action :set_member, only: [:show, :edit, :update, :withdraw]
 
   def show
+    @member = Member.find(params[:id])
+    @posts = @member.posts.all
   end
 
   def edit
@@ -11,7 +13,7 @@ class Public::MembersController < ApplicationController
 
   def update
     if @member.update(member_params)
-      redirect_to members_my_page_path
+      redirect_to member_path
     else
       render 'edit'
     end

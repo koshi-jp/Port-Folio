@@ -22,11 +22,6 @@ Rails.application.routes.draw do
     # resources :order_details, only: [:update]
     # resources :orders, only: [:show, :update]
   end
-#   devise_for :admins, controllers: {
-#   sessions:      'admins/sessions',
-#   passwords:     'admins/passwords',
-#   registrations: 'admins/registrations'
-# }
 
   devise_for :members, skip: :all
   devise_scope :member do
@@ -39,10 +34,10 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root :to => 'homes#top'
-    get 'members/my_page' => 'members#show'
-    resource :members, only: [:edit, :update]
+    resources :members, only: [:show, :edit, :update]
     get 'members/unsubscribe'
     patch 'members/withdraw'
+    resources :posts, only: [:index, :show, :new, :create, :destroy]
     # get 'orders/complete' => 'orders#complete', as: 'orders_complete'
     # resources :orders, only: [:new, :create, :index, :show]
     # post 'orders/confirm'
