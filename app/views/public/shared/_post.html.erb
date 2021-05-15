@@ -11,6 +11,10 @@
       </a>
       <a>タイトル：<%= post.title %></a><br>
       <a>本文：<%= post.body %></a><br>
+
+      <a>
+         <%= render 'tag_list', tag_list: post.tag_list %>
+      </a>
     </div>
   </div>
   <% end %>

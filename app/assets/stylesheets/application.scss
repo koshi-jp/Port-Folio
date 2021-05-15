@@ -33,15 +33,11 @@ footer{
 }
 
 img {
-    max-width: 100%;
+    border-radius: 20px;
     height: auto;
 }
 
 .px-2 {
   padding-left: ($spacer * .5) !important;
   padding-right: ($spacer * .5) !important;
-}
-
-img {
-	border-radius: 20px;
 }

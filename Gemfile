@@ -83,3 +83,5 @@ gem 'pry-byebug'
 
 # 環境変数の管理
 gem 'dotenv-rails'
+
+gem 'acts-as-taggable-on', '~> 6.0'

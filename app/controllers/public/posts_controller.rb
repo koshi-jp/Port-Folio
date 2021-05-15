@@ -30,6 +30,7 @@ class Public::PostsController < ApplicationController
       :title,
       :body,
       :image,
+      :tag_list,
     ]
     params.require(:post).permit(list)
   end
