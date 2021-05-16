@@ -85,3 +85,8 @@ gem 'pry-byebug'
 gem 'dotenv-rails'
 
 gem 'acts-as-taggable-on', '~> 6.0'
+
+# テストデプロイ用
+group :production do
+  gem 'mysql2'
+end
