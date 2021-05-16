@@ -9,10 +9,11 @@
           <h3>登録情報</h3>
         </div>
 
-        <div class="col col-sm-2 align-self-center"><%=link_to "編集する", edit_members_path, class: "btn btn-success" %></div><br>
+        <div class="col col-sm-2 align-self-center"><%=link_to "編集する", edit_member_path, class: "btn btn-success" %></div><br>
+        <div class="col col-sm-2 align-self-center"><%=link_to "新規投稿", new_post_path, class: "btn btn-success" %></div>
       </div>
 
-      <div class="row col-md-6 col-lg-4">
+      <div class="row col-md-6 col-lg-6">
           <table class=" table-bordered table-hover">
             <tbody>
               　<!--<thead>-->
@@ -51,7 +52,6 @@
                   <td class="col col-sm-2 bg-light">メールアドレス</td>
                   <td class="col col-sm-4"><%=@member.email %></td>
                 </tr>
-
              </tbody>
           </table>
       </div>
