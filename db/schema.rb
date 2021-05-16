@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2021_05_15_090954) do
     t.string "nickname", default: "", null: false
     t.text "image_id"
     t.string "playing_now"
-    t.text "introduction", default: "", null: false
+    t.text "introduction", null: false
     t.boolean "is_deleated", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
