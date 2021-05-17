@@ -1,10 +1,36 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
- <div class='col'>
-   <%= render 'public/shared/info', member: @member %>
- </div>
- <div class='col-md-8 offset-md-1'>
-   <%= render 'public/shared/post', posts: @posts %>
- </div>
+
+  <div class='col'>
+    <%= render 'public/shared/info', member: @member %>
+  </div>
+
+  <div class='col-md-8 offset-md-1'>
+    <%= render 'public/shared/post', posts: @posts, post: @post %>
+
+    <div class="comments">
+    <p>コメント件数：<%= @post.post_comments.count %></p>
+      <% @post.post_comments.each do |post_comment| %>
+      <p>refile</p>
+        <%= post_comment.member.name %>
+        <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+        <% if post_comment.member == current_member %>
+        <div class="comment-delete">
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="form-group-comment ">
+      <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+        <%= f.text_area :comment, rows:'2', placeholder: "コメントをここに" %><br>
+        <%= f.submit "送信する" %>
+      <% end %>
+    </div>
+  </div>
+
+
+
  </div>
 </div>

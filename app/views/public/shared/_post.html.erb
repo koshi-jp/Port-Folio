@@ -1,20 +1,38 @@
   <% posts.each do |post| %>
   <div class="d-flex p-2 bd-highlight">
-    <%= attachment_image_tag post, :image, :fill, 300, 300 %>
+    refile
     <div class="d-flex flex-column bd-highlight mb-4">
       <a>
         投稿日時：<%= post.created_at.to_s(:datetime_jp) %>
       </a>
       <a>
         ユーザーネーム：<%= post.member.nickname %>
-        <%= attachment_image_tag post.member, :image, :fill, 40, 40 %>
+        refile
       </a>
-      <a>タイトル：<%= post.title %></a><br>
+
+      <a>タイトル：<%= post.title %></a>
+
+      <a><%= render 'tag_list', tag_list: post.tag_list %></a>
+
       <a>本文：<%= post.body %></a><br>
 
-      <a>
-         <%= render 'tag_list', tag_list: post.tag_list %>
-      </a>
+     <div class="post-info">
+        <% if post.favorited_by?(current_member) %>
+          <a>
+            <%= link_to post_favorites_path(post), method: :delete do %>
+              ♥<%= post.favorites.count %> いいね
+            <% end %>
+          </a>
+          <% else %>
+          <a>
+            <%= link_to post_favorites_path(post), method: :post do %>
+              ♡<%= post.favorites.count %> いいね
+            <% end %>
+          </a>
+        <% end %>
+        <a><%=  "　" %></a>
+        <a><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></a>
+    </div>
     </div>
   </div>
   <% end %>
