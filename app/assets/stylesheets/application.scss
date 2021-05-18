@@ -41,3 +41,11 @@ img {
   padding-left: ($spacer * .5) !important;
   padding-right: ($spacer * .5) !important;
 }
+
+body > div > div > div.col.col-md-3 > div > div > img{
+  width: auto;
+}
+
+body > div > div > div.col-md-8.offset-md-1 > div.d-flex.p-2.bd-highlight > div > a:nth-child(6) > img{
+  width: 100%;
+}

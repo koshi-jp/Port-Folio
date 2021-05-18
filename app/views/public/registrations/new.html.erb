@@ -1,4 +1,4 @@
-
+<div class="container">
 <h2>新規会員登録</h2>
 <%= form_with model: @member, url: member_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
 
@@ -16,7 +16,7 @@
 
   <div class="field">
     <%= f.label "プロフィール画像" %><br />
-    <%= f.file_field :image_id %>
+    <%= f.attachment_field :image %>
   </div>
 
   <div class="field">
@@ -54,3 +54,4 @@
 <% end %>
 
 <%= render "public/shared/links" %>
+</div>

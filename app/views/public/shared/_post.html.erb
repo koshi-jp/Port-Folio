@@ -1,13 +1,13 @@
   <% posts.each do |post| %>
   <div class="d-flex p-2 bd-highlight">
-    refile
+    <%= attachment_image_tag post, :image, :fill, 300, 300 %>
     <div class="d-flex flex-column bd-highlight mb-4">
       <a>
         投稿日時：<%= post.created_at.to_s(:datetime_jp) %>
       </a>
       <a>
         ユーザーネーム：<%= post.member.nickname %>
-        refile
+        <%= attachment_image_tag post.member, :image, :fill, 40, 40 %>
       </a>
 
       <a>タイトル：<%= post.title %></a>
