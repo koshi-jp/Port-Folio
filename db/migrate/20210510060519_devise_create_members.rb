@@ -36,7 +36,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[5.2]
       t.string :nickname,     null: false, default: ""
       t.text :image_id
       t.string :playing_now
-      t.text :introduction,   null: false, default: ""
+      t.text :introduction,   null: false
       t.boolean :is_deleated, default: "false"
       t.timestamps null: false
     end

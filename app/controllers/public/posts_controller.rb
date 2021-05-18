@@ -7,6 +7,8 @@ class Public::PostsController < ApplicationController
   def  show
     @member = Member.find(params[:id])
     @posts = Post.all
+    @post_comment = PostComment.new
+    @post = Post.find(params[:id])
   end
 
   def  new

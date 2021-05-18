@@ -1,16 +1,15 @@
 <div class='info'>
   <div class='row'>
   <table class='table'>
+      <td>
+        メンバー情報
+      </td>
     <tr>
-      <%= attachment_image_tag(member, :image, :fill, 50, 50) %>
-    <th>フォロー数</th>
+    <td><%= attachment_image_tag(member, :image, :fill, 50, 50) %></td>
+    <th><%= member.nickname %></th>
     </tr>
     <tr>
-  	  <th>name</th>
-  	  <th><%= member.nickname %></th>
-    </tr>
-    <tr>
-      <th>今一番ハマっているゲーム</th>
+      <th>今一番ハマっているゲーム</th><br>
       <th><%= member.playing_now %></th>
     </tr>
     <tr>
