@@ -1,26 +1,19 @@
 <div class='info'>
-  <div class='row'>
-  <table class='table'>
-      <td>
-        メンバー情報
-      </td>
-    <tr>
-    <td><%= attachment_image_tag(member, :image, :fill, 50, 50) %></td>
-    <th><%= member.nickname %></th>
-    </tr>
-    <tr>
-      <th>今一番ハマっているゲーム</th><br>
-      <th><%= member.playing_now %></th>
-    </tr>
-    <tr>
-  	  <th>introduction</th>
-  	  <th><%= member.introduction %></th>
-    </tr>
+  <h4 class="text-center">メンバー情報</h4>
+  <div class="card" style="height: 10rem;">
+    <%= attachment_image_tag(member, :image, :fill, 300, 300) %>
+  <ul class="list-group list-group-flush text-center">
+    <li class="list-group-item bg-secondary text-white"><%= member.nickname %></li>
+    <li class="list-group-item bg-secondary text-white"><今一番ハマっているゲームは？></li>
+    <li class="list-group-item bg-secondary text-white"><%= member.playing_now %></li>
+    <li class="list-group-item bg-secondary text-white"><自己紹介></li>
+    <li class="list-group-item bg-secondary text-white"><%= member.introduction %></li>
 
-  </table>
-
-  <div class='row'>
-    <%= link_to '',edit_member_path(member),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{member.id}" %>
-  </div>
+  </ul>
+   <% if member.id == current_member.id %>
+      <div class="align-self-center width-100%">
+        <%=link_to "ユーザー情報編集を編集する", edit_member_path, class: "fas fa-edit btn btn-outline-success" %>
+      </div>
+    <% end %>
   </div>
 </div>
