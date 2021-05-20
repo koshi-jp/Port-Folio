@@ -1,48 +1,7 @@
-<div class="row">
-      <div class="col-sm-2 offset-md-2">
-        <h4 class="bg-light">マイページ</h4><br>
-      </div>
+<div class='container'>
+  <div class='row'>
+    <div class='col col-md-3'>
+      <%= render 'public/shared/info', member: @member %>
     </div>
-
-      <div class="row">
-        <div class="col col-sm-2">
-          <h3>登録情報</h3>
-        </div>
-    <% if @member.id == current_member.id %>
-        <div class="col col-sm-2 align-self-center"><%=link_to "編集する", edit_member_path, class: "btn btn-success" %></div>
-        <div class="col col-sm-2 align-self-center"><%=link_to "投稿一覧", post_path, class: "btn btn-success" %></div>
-        <div class="col col-sm-2 align-self-center"><%=link_to "新規投稿", new_post_path, class: "btn btn-success" %></div>
-      </div>
-    <% end %>
-
-      <div class="row col-md-6 col-lg-6">
-          <table class=" table-bordered table-hover">
-            <tbody>
-                <tr>
-                  <td class="col col-sm-2 bg-light ">プロフィール画像</td>
-                  <td class="col col-sm-4"><%= attachment_image_tag @member, :image, :fill, 100, 100, format: 'jpeg' %></td>
-                </tr>
-
-                <tr>
-                  <td class="col col-sm-2 bg-light">ニックネーム</td>
-                  <td class="col col-sm-4"><%=@member.nickname %></td>
-                </tr>
-
-                <tr>
-                  <td class="col col-sm-2 bg-light">今一番プレイしているゲーム</td>
-                  <td class="col col-sm-4"><%=@member.playing_now %></td>
-                </tr>
-
-                <tr>
-                  <td class="col col-sm-2 bg-light">自己紹介</td>
-                  <td class="col col-sm-4"><%=@member.introduction %></td>
-                </tr>
-
-                <tr>
-                  <td class="col col-sm-2 bg-light">メールアドレス</td>
-                  <td class="col col-sm-4"><%=@member.email %></td>
-                </tr>
-             </tbody>
-          </table>
-      </div>
   </div>
+</div>

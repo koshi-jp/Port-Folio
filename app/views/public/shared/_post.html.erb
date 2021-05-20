@@ -1,3 +1,4 @@
+
   <% posts.each do |post| %>
   <div class="d-flex p-2 bd-highlight">
     <%= link_to attachment_image_tag(post, :image, :fill, 300, 300),post_path(post) %>
@@ -15,7 +16,7 @@
 
       <li class="list-group-item">タイトル：<%= post.title %></li>
 
-      <li class="list-group-item">タグ :<%= render 'tag_list', tag_list: post.tag_list %></li>
+      <li class="list-group-item">タグ:<%= render 'tag_list', tag_list: post.tag_list %></li>
 
       <li class="list-group-item">本文：<%= post.body %><li>
 
