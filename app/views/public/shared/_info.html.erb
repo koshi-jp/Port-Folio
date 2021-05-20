@@ -1,26 +1,14 @@
 <div class='info'>
-  <div class='row'>
-  <table class='table'>
-      <td>
-        メンバー情報
-      </td>
-    <tr>
-    <td><%= attachment_image_tag(member, :image, :fill, 50, 50) %></td>
-    <th><%= member.nickname %></th>
-    </tr>
-    <tr>
-      <th>今一番ハマっているゲーム</th><br>
-      <th><%= member.playing_now %></th>
-    </tr>
-    <tr>
-  	  <th>introduction</th>
-  	  <th><%= member.introduction %></th>
-    </tr>
-
-  </table>
-
-  <div class='row'>
-    <%= link_to '',edit_member_path(member),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{member.id}" %>
+  <h3 class="text-center">メンバー情報</h3>
+  <div class="card" style="height: 10rem;">
+    <%= attachment_image_tag(member, :image) %>
+  <ul class="list-group list-group-flush text-center">
+    <li class="list-group-item bg-secondary text-white"><%= member.nickname %></li>
+    <li class="list-group-item bg-secondary text-white"><今一番ハマっているゲームは？></li>
+    <li class="list-group-item bg-secondary text-white"><%= member.playing_now %></li>
+    <li class="list-group-item bg-secondary text-white"><自己紹介></li>
+    <li class="list-group-item bg-secondary text-white"><%= member.introduction %></li>
+  </ul>
   </div>
-  </div>
+  <%= link_to '',edit_member_path(member),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{member.id}" %>
 </div>

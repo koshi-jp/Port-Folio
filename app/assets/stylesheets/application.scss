@@ -15,6 +15,11 @@
  */
  @import "bootstrap";
 
+
+body {
+font-family:"Yu Gothic UI","Hiragino Mincho ProN",sans-serif;
+}
+
 .wrapper{
     min-height: 100vh;
     position: relative;/*←相対位置*/
@@ -33,8 +38,8 @@ footer{
 }
 
 img {
-    border-radius: 20px;
     height: auto;
+    opacity: 1;
 }
 
 .px-2 {
@@ -49,3 +54,23 @@ body > div > div > div.col.col-md-3 > div > div > img{
 body > div > div > div.col-md-8.offset-md-1 > div.d-flex.p-2.bd-highlight > div > a:nth-child(6) > img{
   width: 100%;
 }
+
+body > div > div > div.col-md-8.offset-md-1 > div.d-flex.p-2.bd-highlight > div > a:nth-child(6) > img{
+ height: auto;
+ width: 100%;
+ max-width: 100%;
+ border-radius: 20px;
+}
+
+body > div > div > div.col.col-8.offset-md-1 > div:nth-child(odd) > div > div{
+  background-color: #D7EEFF;
+}
+
+body > div > div > div.col.col-8.offset-md-1 > div:nth-child(even) > div > div{
+  background-color: #FFEEFF;
+}
+
+body > div > div > div.col.col-md-8.offset-md-1 > div.card > a > img{
+    max-width: 100%;
+}
+

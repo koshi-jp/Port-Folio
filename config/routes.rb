@@ -34,9 +34,8 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root :to => 'homes#top'
-    resources :members, only: [:show, :edit, :update]
-    get 'members/unsubscribe'
-    patch 'members/withdraw'
+    post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
+    resources :members, only: [:show, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :new, :create, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]

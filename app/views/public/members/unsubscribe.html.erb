@@ -17,5 +17,6 @@
 
       <div class="col col-sm-3 align-self-center">
         <%= link_to "退会する", members_withdraw_path, method: :patch, class:"btn btn-danger", data: { confirm: '本当に退会してよろしいですか？' } %>
+        <%= link_to "削除", destroy_member_path, method: :delete, class:"btn btn-danger", data: {confirm: "本当にアカウントを削除しますか？"} %>
       </div>
     </div>
