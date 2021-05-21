@@ -1,11 +1,16 @@
 <h2>検索結果</h2>
 
 <table class="table table-hover table-inverse">
-  <% if @range == "Member" %>
+  <% if @range == "名前" %>
     <tbody>
       <% @members.each do |member| %>
         <tr>
+          <td><%= attachment_image_tag(member, :image, :fill, 50, 50) %></td>
           <td><%= member.nickname %></td>
+          <td>投稿数 : <%= member.posts.count %></td>
+          <td>フォロー数：<%= member.following.count %></td>
+          <td>フォロワー数 : <%= member.follower.count %></td>
+          <td><%= link_to 'Show', member_path(member), class: "member_#{member.id}" %></td>
         </tr>
       <% end %>
     </tbody>

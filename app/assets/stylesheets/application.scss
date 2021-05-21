@@ -62,11 +62,11 @@ body > div > div > div.col-md-8.offset-md-1 > div.d-flex.p-2.bd-highlight > div 
  border-radius: 20px;
 }
 
-body > div > div > div.col.col-8.offset-md-1 > div:nth-child(odd) > div > div{
+body > div > div > div.col.col-8 > div:nth-child(odd) > div > div{
   background-color: #D7EEFF;
 }
 
-body > div > div > div.col.col-8.offset-md-1 > div:nth-child(even) > div > div{
+body > div > div > div.col.col-8 > div:nth-child(even) > div > div{
   background-color: #FFEEFF;
 }
 
