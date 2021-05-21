@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
     post 'follow/:id' => 'relationships#follow', as: 'follow'
     delete 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
+    get "search" => "searches#search"
     resources :members, only: [:show, :edit, :update, :destroy]do
       get :following, :follower, on: :member
     end

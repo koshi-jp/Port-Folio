@@ -1,0 +1,49 @@
+<h2>検索結果</h2>
+
+<table class="table table-hover table-inverse">
+  <% if @range == "Member" %>
+    <tbody>
+      <% @members.each do |member| %>
+        <tr>
+          <td><%= member.nickname %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+      <% @posts.each do |post| %>
+        <div class="d-flex p-2 bd-highlight col col-8 offset-md-4">
+          <%= link_to attachment_image_tag(post, :image, :fill, 300, 300),post_path(post) %>
+
+        <div class="card" style="width: 100%;">
+        <div class="card-header">
+          <%= post.member.nickname %>さんの投稿
+          <%= attachment_image_tag post.member, :image, :fill, 40, 40 %>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">投稿日時：<%= post.created_at.to_s(:datetime_jp) %></li>
+          <li class="list-group-item">タイトル：<%= post.title %></li>
+          <li class="list-group-item">タグ:<%= render 'public/posts/tag_list', tag_list: post.tag_list %></li>
+
+        <% if post.favorited_by?(current_member) %>
+          <li class="list-group-item">
+            <%= link_to post_favorites_path(post), method: :delete do %>
+              ♥<%= post.favorites.count %>いいね<%= "　　" %>
+              <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
+            <% end %>
+          </li>
+        <% else %>
+          <li class="list-group-item">
+            <%= link_to post_favorites_path(post), method: :post do %>
+              ♡<%= post.favorites.count %> いいね<%= "　　" %>
+              <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
+            <% end %>
+        <% end %>
+        </li>
+        <li class="list-group-item">本文：<%= post.body %><li>
+      </ul>
+    </div>
+    </div>
+      <% end %>
+  <% end %>
+</table>

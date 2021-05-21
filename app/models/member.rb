@@ -25,4 +25,19 @@ class Member < ApplicationRecord
   def following?(member_id)
     following_member.include?(member_id)
   end
+
+  # 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @member = Member.where("nickname LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @member = Member.where("nickname LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @member = Member.where("nickname LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @member = Member.where("nickname LIKE?","%#{word}%")
+    else
+      @member = Member.all
+    end
+  end
 end
