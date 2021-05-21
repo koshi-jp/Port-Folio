@@ -35,7 +35,11 @@ Rails.application.routes.draw do
   scope module: :public do
     root :to => 'homes#top'
     post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
-    resources :members, only: [:show, :edit, :update, :destroy]
+    post 'follow/:id' => 'relationships#follow', as: 'follow'
+    delete 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
+    resources :members, only: [:show, :edit, :update, :destroy]do
+      get :following, :follower, on: :member
+    end
     resources :posts, only: [:index, :show, :new, :create, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]

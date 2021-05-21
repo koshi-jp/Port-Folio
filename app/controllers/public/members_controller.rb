@@ -27,6 +27,16 @@ class Public::MembersController < ApplicationController
     redirect_to root_path
   end
 
+  def following
+    member = Member.find(params[:id])
+    @members = member.following_member
+  end
+
+  def follower
+    member = Member.find(params[:id])
+    @members = member.follower_member
+  end
+
   private
 
   def set_member

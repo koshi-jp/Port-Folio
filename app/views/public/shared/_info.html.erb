@@ -8,11 +8,35 @@
     <li class="list-group-item bg-secondary text-white"><%= member.playing_now %></li>
     <li class="list-group-item bg-secondary text-white"><自己紹介></li>
     <li class="list-group-item bg-secondary text-white"><%= member.introduction %></li>
+    <li class="list-group-item">
+      <a href="<%= following_member_path(@member) %>">
+        <%= member.following.count %> フォロー
+      </a>
+      <a>　</a>
+      <a href="<%= follower_member_path(@member) %>">
+        <%= member.follower.count %> フォロワー
+      </a>
+    </li>
+
+    <% unless member == current_member %>
+      <li class="list-group-item bg-light">
+        <% if current_member.following?(member) %>
+          <%= link_to unfollow_path(member.id), method: :delete, :style=>"color:#E0245E;" do %>
+            フォローを外す
+          <% end %>
+        <% else %>
+          <%= link_to follow_path(member.id), method: :post, :style=>"color:#003366;" do %>
+            フォローする<i class="fas fa-hand-holding-heart"></i>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+
 
   </ul>
    <% if member.id == current_member.id %>
       <div class="align-self-center width-100%">
-        <%=link_to "ユーザー情報編集を編集する", edit_member_path, class: "fas fa-edit btn btn-outline-success" %>
+        <%=link_to "ユーザー情報を編集する", edit_member_path, class: "fas fa-edit btn btn-outline-success" %>
       </div>
     <% end %>
   </div>
