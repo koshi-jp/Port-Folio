@@ -1,10 +1,67 @@
-<div class='container px-5 px-sm-0'>
-  <div class='row'>
- <div class='col'>
-   <%= render 'public/shared/info', member: @member %>
- </div>
- <div class='col-md-8 offset-md-1'>
-   <%= render 'public/shared/post', posts: @posts %>
- </div>
- </div>
+  <div class='container'>
+    <div class='row'>
+      <div class='col col-md-3'>
+        <%= render 'public/shared/info', member: @member %>
+      </div>
+
+      <div class='col col-md-8 offset-md-1'>
+        <div class="d-flex flex-column bd-highlight h5">
+          <a>投稿日時：<%= @post.created_at.to_s(:datetime_jp) %></a>
+          <a>タイトル：<%= @post.title %></a>
+          <a>タグ：<%= render 'tag_list', tag_list: @post.tag_list %></a>
+        </div>
+
+      <div class="card" style="col-8 width: auto;">
+        <a class="card-img-top"><%= attachment_image_tag @post, :image %></a>
+        <div class="card-body bg-light">
+          <div class="card-text h4"><%= @post.body %></div>
+        </div>
+      </div>
+
+
+      <div class="post-info h3">
+        <% if @post.favorited_by?(current_member) %>
+          <a><%= link_to post_favorites_path(@post), method: :delete do %><i class="fas fa-heart"></i><%= @post.favorites.count %>
+             <% end %>
+          </a>
+        <% else %>
+            <a>
+              <%= link_to post_favorites_path(@post), method: :post do %><i class="far fa-heart"></i><%= @post.favorites.count %> いいね
+              <% end %>
+            </a>
+        <% end %>
+          <i class="far fa-comment-dots"></i>
+          <a><%= link_to "#{@post.post_comments.count} ", post_path(@post.id) %></a>
+          <a><%=  "  " %></a>
+          <% if @post.member == current_member %>
+          <a class="d-grid justify-content-md-end">
+            <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, class: 'btn btn-danger ', "data-confirm" => "本当に削除しますか？" %>
+          <% end %>
+          </a>
+      </div>
+    </div>
+
+      <div class="col col-md-8 offset-md-4">
+        <div class="form-group-comment">
+          <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+            <%= f.text_area :comment,class: 'form-control', rows:'3', placeholder: "コメントをここに" %>
+            <%= f.submit "送信する" %>
+          <% end %>
+        </div>
+
+        <% @post.post_comments.each do |post_comment| %>
+        <p class="h4">
+          <%= attachment_image_tag post_comment.member, :image, :fill, 40, 40 %>
+          <%= post_comment.member.nickname %>
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+          <% if post_comment.member == current_member %>
+          <div class="comment-delete">
+            <%= link_to "コメントを削除", post_post_comment_path(post_comment.post, post_comment),class: "far fa-trash-alt btn btn-danger", method: :delete %>
+          </div>
+           <% end %>
+        </p>
+
+       <% end %>
+       </div>
+    </div>
 </div>

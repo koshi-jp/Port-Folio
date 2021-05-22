@@ -1,3 +1,10 @@
 <div class="container">
-<%= render 'public/shared/post', posts: @posts %>
+    <div class= "row">
+        <div class="col col-4">
+        <%= render 'public/shared/search' %>
+        </div>
+        <div class="col col-8">
+        <%= render 'public/shared/post', posts: @posts, post: @post %>
+        </div>
+    </div>
 </div>

@@ -9,9 +9,11 @@ class Public::MembersController < ApplicationController
   end
 
   def edit
+    @member = Member.find(params[:id])
   end
 
   def update
+    @member = Member.find(params[:id])
     if @member.update(member_params)
       redirect_to member_path
     else
@@ -19,12 +21,20 @@ class Public::MembersController < ApplicationController
     end
   end
 
-  def unsubscribe
+  def destroy
+    member = Member.find(params[:id])
+    member.destroy
+    redirect_to root_path
   end
 
-  def withdraw
-    @member.update(is_deleted: true)
-    redirect_to root_path
+  def following
+    member = Member.find(params[:id])
+    @members = member.following_member
+  end
+
+  def follower
+    member = Member.find(params[:id])
+    @members = member.follower_member
   end
 
   private
@@ -35,12 +45,10 @@ class Public::MembersController < ApplicationController
 
   def member_params
     list = [
-      :name,
       :nickname,
       :image,
       :playing_now,
       :introduction,
-      :is_deleted,
       :email,
     ]
     params.require(:member).permit(list)

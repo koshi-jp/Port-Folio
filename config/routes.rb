@@ -34,16 +34,25 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root :to => 'homes#top'
-    resources :members, only: [:show, :edit, :update]
-    get 'members/unsubscribe'
-    patch 'members/withdraw'
-    resources :posts, only: [:index, :show, :new, :create, :destroy]
-    # get 'orders/complete' => 'orders#complete', as: 'orders_complete'
-    # resources :orders, only: [:new, :create, :index, :show]
-    # post 'orders/confirm'
-    # resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
+    post 'follow/:id' => 'relationships#follow', as: 'follow'
+    delete 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
+    get "search" => "searches#search"
+    get 'inquiry' => 'inquiry#index'              # 入力画面
+    post 'inquiry/confirm' => 'inquiry#confirm'   # 確認画面
+    post 'inquiry/thanks' => 'inquiry#thanks'     # 送信完了画面
+
+    resources :members, only: [:show, :edit, :update, :destroy]do
+      get :following, :follower, on: :member
+    end
+    resources :posts, only: [:index, :show, :new, :create, :destroy] do
+      resources :post_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+    end
+
   end
+
+end
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-end
