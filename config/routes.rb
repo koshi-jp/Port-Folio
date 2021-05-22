@@ -38,6 +38,10 @@ Rails.application.routes.draw do
     post 'follow/:id' => 'relationships#follow', as: 'follow'
     delete 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
     get "search" => "searches#search"
+    get 'inquiry' => 'inquiry#index'              # 入力画面
+    post 'inquiry/confirm' => 'inquiry#confirm'   # 確認画面
+    post 'inquiry/thanks' => 'inquiry#thanks'     # 送信完了画面
+
     resources :members, only: [:show, :edit, :update, :destroy]do
       get :following, :follower, on: :member
     end
