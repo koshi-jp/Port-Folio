@@ -3,7 +3,10 @@
   <div class="card" style="height: 10rem;">
     <%= attachment_image_tag(member, :image, :fill, 300, 300) %>
   <ul class="list-group list-group-flush text-center">
-    <li class="list-group-item bg-secondary text-white"><%= member.nickname %></li>
+    <li class="list-group-item bg-secondary text-white">
+      <a href="<%= member_path(member) %>", class= "editlink">
+        <%= member.nickname %></li>
+      </a>
     <li class="list-group-item bg-secondary text-white"><今一番ハマっているゲームは？></li>
     <li class="list-group-item bg-secondary text-white"><%= member.playing_now %></li>
     <li class="list-group-item bg-secondary text-white"><自己紹介></li>

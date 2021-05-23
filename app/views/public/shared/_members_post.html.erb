@@ -1,6 +1,7 @@
 
   <% posts.each do |post| %>
-  <div class="d-flex p-1 bd-highlight ">
+  <div class="d-flex p-2 bd-highlight">
+    
     <%= link_to attachment_image_tag(post, :image, :fill, 250, 270),post_path(post) %>
 
    <div class="card" style="width: 100%;">

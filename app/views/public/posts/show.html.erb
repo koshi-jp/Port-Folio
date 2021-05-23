@@ -4,14 +4,16 @@
         <%= render 'public/shared/info', member: @member %>
       </div>
 
-      <div class='col col-md-8 offset-md-1'>
+
+      <div class='col col-md-8'>
+        <%= render 'public/shared/search' %><br>
         <div class="d-flex flex-column bd-highlight h5">
           <a>投稿日時：<%= @post.created_at.to_s(:datetime_jp) %></a>
           <a>タイトル：<%= @post.title %></a>
-          <a>タグ：<%= render 'tag_list', tag_list: @post.tag_list %></a>
+          <a>タグ：<%= render 'public/shared/tag_list', tag_list: @post.tag_list %></a>
         </div>
 
-      <div class="card" style="col-8 width: auto;">
+      <div class="card" style="col-8 width: 100%;">
         <a class="card-img-top"><%= attachment_image_tag @post, :image %></a>
         <div class="card-body bg-light">
           <div class="card-text h4"><%= @post.body %></div>
@@ -41,7 +43,7 @@
       </div>
     </div>
 
-      <div class="col col-md-8 offset-md-4">
+      <div class="col col-md-8 offset-md-3">
         <div class="form-group-comment">
           <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
             <%= f.text_area :comment,class: 'form-control', rows:'3', placeholder: "コメントをここに" %>
