@@ -1,0 +1,47 @@
+  <div class='container'>
+    <div class='row'>
+      <div class='col col-md-3'>
+        <%= render 'admin/shared/info', member: @member %>
+      </div>
+
+
+      <div class='col col-md-8'>
+        <div class="d-flex flex-column bd-highlight h5">
+          <a>投稿日時：<%= @post.created_at.to_s(:datetime_jp) %></a>
+          <a>タイトル：<%= @post.title %></a>
+          <a>タグ：<%= render 'public/shared/tag_list', tag_list: @post.tag_list %></a>
+        </div>
+
+        <div class="card" style="col-8 width: 100%;">
+          <a class="card-img-top"><%= attachment_image_tag @post, :image %></a>
+          <div class="card-body bg-light">
+            <div class="card-text h4"><%= @post.body %></div>
+          </div>
+        </div>
+
+
+        <div class="post-info h3">
+          <a><i class="fas fa-heart"></i><%= @post.favorites.count %></a>
+          <i class="far fa-comment-dots"></i>
+          <a><%= @post.post_comments.count %></a>
+          <a><%=  "  " %></a>
+          <a class="d-grid justify-content-md-end">
+            <%= link_to "投稿を削除する", admin_post_path(@post.id), method: :delete, class: 'btn btn-danger ', "data-confirm" => "本当に削除しますか？" %>
+          </a>
+        </div>
+      </div>
+
+      <div class="col col-md-8 offset-md-3">
+        <% @post.post_comments.each do |post_comment| %>
+          <p class="h4">
+            <%= attachment_image_tag post_comment.member, :image, :fill, 40, 40 %>
+            <%= post_comment.member.nickname %>
+            <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+            <div class="comment-delete">
+              <%= link_to "コメントを削除", admin_post_post_comment_path(post_comment.post, post_comment),class: "far fa-trash-alt btn btn-danger", method: :delete %>
+            </div>
+          </p>
+        <% end %>
+       </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+  <% posts.each do |post| %>
+    <div class="d-flex p-1 bd-highlight ">
+      <%= link_to attachment_image_tag(post, :image, :fill, 250, 270),admin_post_path(post) %>
+      <div class="card" style="width: 100%;">
+        <div class="card-header text-white">
+          <%= post.member.nickname %>さんの投稿
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">投稿日時：<%= post.created_at.to_s(:datetime_jp) %></li>
+          <li class="list-group-item">タイトル：<%= post.title %></li>
+          <li class="list-group-item">タグ:<%= render 'public/shared/tag_list', tag_list: post.tag_list %></li>
+          <li class="list-group-item">♥<%= post.favorites.count %>いいね<%= "　　" %><%= "#{post.post_comments.count} コメント" %></li>
+          <li class="list-group-item">本文：<%= post.body %></li>
+        </ul>
+
+      </div>
+    </div>
+  <% end %>

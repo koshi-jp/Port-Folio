@@ -1,0 +1,24 @@
+<div class='info'>
+  <h4 class="text-center">メンバー情報</h4>
+  <div class="card" style="height: 10rem;">
+    <%= attachment_image_tag(member, :image, :fill, 300, 300) %>
+  <ul class="list-group list-group-flush text-center">
+    <li class="list-group-item bg-secondary text-white">
+      <a href="<%= member_path(member) %>", class= "editlink">
+        <%= member.nickname %></li>
+      </a>
+    <li class="list-group-item bg-secondary text-white"><今一番ハマっているゲームは？></li>
+    <li class="list-group-item bg-secondary text-white"><%= member.playing_now %></li>
+    <li class="list-group-item bg-secondary text-white"><自己紹介></li>
+    <li class="list-group-item bg-secondary text-white"><%= member.introduction %></li>
+     <li class="list-group-item">
+      <a><%= member.following.count %> フォロー</a>
+      <a>　</a>
+      <a><%= member.follower.count %> フォロワー</a>
+    </li>
+  </ul>
+      <div class="align-self-center width-100%">
+        <%=link_to "ユーザー情報を編集する", edit_admin_member_path, class: "fas fa-edit btn btn-outline-success" %>
+      </div>
+  </div>
+</div>
