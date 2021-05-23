@@ -3,5 +3,9 @@
     <div class='col col-md-3'>
       <%= render 'public/shared/info', member: @member %>
     </div>
+    <div class="col col-8 offset-md-1">
+      <%= render 'public/shared/search' %><br>
+      <%= render 'public/shared/members_post', posts: @posts, post: @post %>
+    </div>
   </div>
 </div>

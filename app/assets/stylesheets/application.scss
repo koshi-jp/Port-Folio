@@ -51,30 +51,62 @@ body > div > div > div.col.col-md-3 > div > div > img{
   width: auto;
 }
 
-body > div > div > div.col-md-8.offset-md-1 > div.d-flex.p-2.bd-highlight > div > a:nth-child(6) > img{
-  width: 100%;
+// body > div > div > div.col-md-8.offset-md-1 > div.d-flex.p-2.bd-highlight > div > a:nth-child(6) > img{
+//   width: 100%;
+// }
+
+// body > div > div > div.col-md-8.offset-md-1 > div.d-flex.p-2.bd-highlight > div > a:nth-child(6) > img{
+//  height: auto;
+//  width: 100%;
+//  max-width: 100%;
+//  border-radius: 20px;
+// }
+
+body > div > div > div:nth-child(odd) > div > div{
+  background-color: #003366;
+}
+body > div > div > div:nth-child(even) > div > div{
+  background-color: #007700;
 }
 
-body > div > div > div.col-md-8.offset-md-1 > div.d-flex.p-2.bd-highlight > div > a:nth-child(6) > img{
- height: auto;
- width: 100%;
- max-width: 100%;
- border-radius: 20px;
-}
-
-body > div > div > div.col.col-8 > div:nth-child(odd) > div > div{
-  background-color: #D7EEFF;
-}
-
-body > div > div > div.col.col-8 > div:nth-child(even) > div > div{
-  background-color: #FFEEFF;
-}
-
-body > div > div > div.col.col-md-8.offset-md-1 > div.card > a > img{
-    max-width: 100%;
+body > div > div > div.col.col-md-8 > div.card > a > img{
+    max-width: 950px;
+    height: auto;
 }
 
 body > header > nav > div > a > img{
+  width:100px;
+  height:100px;
+}
+
+#preview{
+ width: 300px;
+ height: 300px;
+//  object-fit: contain;
+}
+.top-text{
+    opacity: 1.0;
+    font-size: x-large;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+ .bg-img{
+  background-image: image-url('bg-img.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 400px;
+}
+
+body > div > div > div:nth-child(n){
+  max-width: 50%;
+}
+
+.editlink{
+    text-decoration: none;
+    color: white ;
+}
+ body > header > nav > div > a > img{
   width:100px;
   height:100px;
 }
