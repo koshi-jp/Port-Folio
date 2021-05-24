@@ -1,7 +1,7 @@
 
   <% posts.each do |post| %>
   <div class="d-flex p-2 bd-highlight">
-    
+
     <%= link_to attachment_image_tag(post, :image, :fill, 250, 270),post_path(post) %>
 
    <div class="card" style="width: 100%;">
@@ -32,7 +32,7 @@
             <% end %>
         <% end %>
 
-        <li class="list-group-item">本文：<%= post.body %></li>
+        <li class="list-group-item">本文：<%= post.body.truncate(140) %></li>
       </ul>
     </div>
     </div>
