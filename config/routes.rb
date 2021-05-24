@@ -5,22 +5,16 @@ Rails.application.routes.draw do
     get 'admin/sign_in' => 'admin/sessions#new', as: 'new_admin_session'
     post 'admin/sign_in' => 'admin/sessions#create', as: 'admin_session'
     delete 'admin/sign_out' => 'admin/sessions#destroy', as: 'destroy_admin_session'
+    get 'admin/sign_up' => 'admin/registrations#new', as: 'new_madmin_registration'
+    post 'admin' => 'admin/registrations#create', as: 'admin_registration'
   end
 
   namespace :admin do
-    root :to => 'homes#top'
       resources :homes, only: [:top]
-    #   collection do
-    #     get 'search'
-    #   end
-    # end
-    # resources :items, only: [:new, :index, :create, :show, :edit, :update]
-    # post 'items/search'
-    # resources :genres, only: [:index, :create, :edit, :update]
-    # resources :customers, only: [:index, :show, :edit, :update]
-    # post 'customers/search'
-    # resources :order_details, only: [:update]
-    # resources :orders, only: [:show, :update]
+      resources :members, only: [:index,:show, :edit, :update, :destroy]
+      resources :posts, only: [:index, :show, :destroy] do
+        resources :post_comments, only: [:destroy]
+      end
   end
 
   devise_for :members, skip: :all

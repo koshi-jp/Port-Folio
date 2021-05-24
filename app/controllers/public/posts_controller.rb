@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_member!
 
   def  index
     @posts = Post.all
@@ -23,6 +24,9 @@ class Public::PostsController < ApplicationController
   end
 
   def  destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
   end
 
  private

@@ -1,7 +1,7 @@
 class Public::MembersController < ApplicationController
   before_action :authenticate_member!
   # ログインしているメンバーのパラメータ受け渡し
-  before_action :set_member, only: [:show, :edit, :update, :withdraw]
+  before_action :set_member, only: [:edit, :update, :withdraw]
 
   def show
     @member = Member.find(params[:id])

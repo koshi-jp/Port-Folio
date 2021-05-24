@@ -1,4 +1,6 @@
 class Public::RelationshipsController < ApplicationController
+  before_action :authenticate_member!
+
     def follow
       current_member.follow(params[:id])
       redirect_back(fallback_location: root_path)
