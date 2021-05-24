@@ -5,7 +5,7 @@
       </div>
 
 
-      <div class='col col-md-8'>
+      <div class='col col-md-9 show-img'>
         <%= render 'public/shared/search' %><br>
         <div class="d-flex flex-column bd-highlight h5">
           <a>投稿日時：<%= @post.created_at.to_s(:datetime_jp) %></a>
@@ -13,7 +13,7 @@
           <a>タグ：<%= render 'public/shared/tag_list', tag_list: @post.tag_list %></a>
         </div>
 
-      <div class="card" style="col-8 width: 100%;">
+      <div class="card" style="col-md-8 width: 100%;">
         <a class="card-img-top"><%= attachment_image_tag @post, :image %></a>
         <div class="card-body bg-light">
           <div class="card-text h4"><%= @post.body %></div>
@@ -34,7 +34,7 @@
         <% end %>
           <i class="far fa-comment-dots"></i>
           <a><%= link_to "#{@post.post_comments.count} ", post_path(@post.id) %></a>
-          <a><%=  "  " %></a>
+          <a><%=  "　　" %></a>
           <% if @post.member == current_member %>
           <a class="d-grid justify-content-md-end">
             <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, class: 'btn btn-danger ', "data-confirm" => "本当に削除しますか？" %>

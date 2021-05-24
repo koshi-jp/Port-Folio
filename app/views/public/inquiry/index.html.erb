@@ -1,6 +1,6 @@
 <%= form_with model: @inquiry, url: inquiry_confirm_path, local: true do |f| %>
   <div class="page-header">
-    <h1>お問い合わせ</h1>
+    <h1 class="offset-md-3">お問い合わせ</h1>
   </div>
 
   <% if @inquiry.errors.any? %>
@@ -16,17 +16,17 @@
 
   <table class="table">
     <tr>
-      <th>名前<span class="text-danger">（必須）</span></th>
-      <td><%= f.text_field :name %></td>
+      <th class="text-center">名前<span class="text-danger">（必須）</span></th>
+      <td><%= f.text_field :name, class: "col-sm-6" %></td>
     </tr>
     <tr>
-      <th>メールアドレス<span class="text-danger">（必須）</span></th>
-      <td><%= f.text_field :email %></td>
+      <th class="text-center">メールアドレス<span class="text-danger">（必須）</span></th>
+      <td><%= f.text_field :email, class: "col-sm-6 " %></td>
     </tr>
     <tr>
-      <th>お問い合わせ内容</th>
-      <td><%= f.text_area :message %></td>
+      <th class="text-center">お問い合わせ内容</th>
+      <td><%= f.text_area :message, class: "col-sm-8" %></td>
     </tr>
   </table>
-  <%= f.submit '確認', class: 'btn btn-primary' %>
+  <%= f.submit '確認', class: 'btn btn-primary col-2 offset-md-4' %>
 <% end %>

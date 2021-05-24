@@ -21,10 +21,8 @@
 
 
         <div class="post-info h3">
-          <a><i class="fas fa-heart"></i><%= @post.favorites.count %></a>
-          <i class="far fa-comment-dots"></i>
-          <a><%= @post.post_comments.count %></a>
-          <a><%=  "  " %></a>
+          <a><i class="fas fa-heart"></i><%= @post.favorites.count %></a><a><%=  "　　" %></a>
+          <a><i class="far fa-comment-dots"></i><%= @post.post_comments.count %></a>
           <a class="d-grid justify-content-md-end">
             <%= link_to "投稿を削除する", admin_post_path(@post.id), method: :delete, class: 'btn btn-danger ', "data-confirm" => "本当に削除しますか？" %>
           </a>

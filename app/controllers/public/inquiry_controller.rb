@@ -1,5 +1,4 @@
-class Public::InquiryController < ApplicationControlle
-  before_action :authenticate_member!
+class Public::InquiryController < ApplicationController
 
   def index
     # 入力画面を表示

@@ -13,14 +13,26 @@
         </div>
 
         <div class="form-group">
-        <h4>投稿画像</h4>
-        <%= f.attachment_field :image, class: "col-sm-3 form-control-static" %>
-        </div>
-
-        <div class="form-group">
         <h4>タグ付け</h4>
         <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control-static" %>
         </div>
+
+        <div class="form-group">
+          <h4>投稿画像</h4>
+          <%= f.attachment_field :image, class: "col-sm-3 form-control-static" %>
+        </div>
+
+         <img id="preview" class="offset-sm-3">
+            <script>
+              // 画像プレビュー
+              $('#post_image').on('change', function (e) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+              $("#preview").attr('src', e.target.result);
+              }
+              reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
+              });
+            </script>
 
         <%= f.submit '投稿' %>
       </form>

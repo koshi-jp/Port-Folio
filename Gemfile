@@ -68,6 +68,7 @@ gem 'devise-i18n'
 
 # レイアウト編集
 gem 'bootstrap'
+# 非同期通信
 gem 'jquery-rails'
 
 # 画像投稿用gem
