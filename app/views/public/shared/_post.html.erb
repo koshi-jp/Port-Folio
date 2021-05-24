@@ -14,23 +14,10 @@
 
       <li class="list-group-item">タイトル：<%= post.title.truncate(20) %></li>
       <li class="list-group-item">タグ:<%= render 'public/shared/tag_list', tag_list: post.tag_list %></li>
-
-        <% if post.favorited_by?(current_member) %>
-          <li class="list-group-item">
-            <%= link_to post_favorites_path(post),class: "favorite",  method: :delete do %>♥<%= post.favorites.count %>いいね
-            <%= "　　" %>
-            <%= link_to "#{post.post_comments.count} コメント", post_path(post.id),class: "favorite" %>
-          </li>
-            <% end %>
-        <% else %>
-          <li class="list-group-item">
-            <%= link_to post_favorites_path(post),class: "favorite",  method: :post do %>♡<%= post.favorites.count %> いいね<%= "　　" %>
-            <%= link_to "#{post.post_comments.count} コメント", post_path(post.id),class: "favorite" %>
-          </li>
-            <% end %>
-        <% end %>
-
-        <li class="list-group-item">本文：<%= post.body.truncate(107) %></li>
+      <div class="favorite-btn_<%= post.id %>">
+        <%= render partial: 'public/favorites/favorite-btn', locals: { post: post} %>
+      </div>
+      <li class="list-group-item">本文：<%= post.body.truncate(107) %></li>
       </ul>
     </div>
 </div>
