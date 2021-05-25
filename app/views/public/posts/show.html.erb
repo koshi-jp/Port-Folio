@@ -22,24 +22,14 @@
 
 
       <div class="post-info h3">
-        <% if @post.favorited_by?(current_member) %>
-          <a><%= link_to post_favorites_path(@post), method: :delete do %><i class="fas fa-heart"></i><%= @post.favorites.count %>
-             <% end %>
-          </a>
-        <% else %>
-            <a>
-              <%= link_to post_favorites_path(@post), method: :post do %><i class="far fa-heart"></i><%= @post.favorites.count %> いいね
-              <% end %>
-            </a>
-        <% end %>
-          <i class="far fa-comment-dots"></i>
-          <a><%= link_to "#{@post.post_comments.count} ", post_path(@post.id) %></a>
-          <a><%=  "　　" %></a>
+        <div id="favorite-btn_<%= @post.id %>">
+          <%= render partial: 'public/favorites/favorite-btn', locals: {post: @post} %>
+        </div>
           <% if @post.member == current_member %>
-          <a class="d-grid justify-content-md-end">
-            <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, class: 'btn btn-danger ', "data-confirm" => "本当に削除しますか？" %>
+            <a class="d-grid justify-content-md-end">
+              <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, class: 'btn btn-danger ', "data-confirm" => "本当に削除しますか？" %>
+            </a>
           <% end %>
-          </a>
       </div>
     </div>
 

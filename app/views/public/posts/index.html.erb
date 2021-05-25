@@ -1,7 +1,6 @@
-<div class="container">
-    <div>
-      <h3 class="text-center bg-secondary text-white">新着投稿一覧</h3>
-    </div>
+  <div class="container">
+    <div class="text-center h3 text-white" id="index-rabel">新着投稿一覧</div>
+
     <div class= "row">
           <% @posts.each do |post| %>
              <div class="d-flex p-1 bd-highlight index">
@@ -9,7 +8,7 @@
             <%= link_to attachment_image_tag(post, :image, :fill, 250, 270),post_path(post) %>
 
                <div class="card" style="width: 100%;">
-                 <div class="card-header text-white">
+                 <div class="card-header text-dark" id="card-header">
                    <%= post.member.nickname %>さんの投稿
                  </div>
 

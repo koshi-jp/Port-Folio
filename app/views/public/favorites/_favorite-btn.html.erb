@@ -1,14 +1,13 @@
  <% if post.favorited_by?(current_member) %>
   <li class="list-group-item">
-    <%= link_to post_favorites_path(post),class: "favorite",  method: :delete, remote: true do %>♥<%= post.favorites.count %>いいね
-    <%= "　　" %>
-    <%= link_to "#{post.post_comments.count} コメント", post_path(post.id),class: "favorite" %>
+    <a><%= link_to post_favorites_path(post),class: "favorite",  method: :delete, remote: true do %>♥<%= post.favorites.count %></a>
+    <a><%= "　　" %><%= post.post_comments.count %>コメント</a>
   </li>
     <% end %>
 <% else %>
   <li class="list-group-item">
-    <%= link_to post_favorites_path(post),class: "favorite",  method: :post, remote: true do %>♡<%= post.favorites.count %> いいね<%= "　　" %>
-    <%= link_to "#{post.post_comments.count} コメント", post_path(post.id),class: "favorite" %>
+    <a><%= link_to post_favorites_path(post),  method: :post, remote: true do %>♡<%= post.favorites.count %></a>
+    <a><%= "　　" %><%= post.post_comments.count %>コメント</a>
   </li>
     <% end %>
 <% end %>

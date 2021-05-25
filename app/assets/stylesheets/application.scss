@@ -47,12 +47,12 @@ footer{
   padding-right: ($spacer * .5) !important;
 }
 
-
-body > div > div > div:nth-child(odd) > div > div{
-  background-color: #003366;
+#card-header{
+    background-color: #FF9872;
 }
-body > div > div > div:nth-child(even) > div > div{
-  background-color: #007700;
+
+#index-rabel{
+    background-color: #003366
 }
 
 body > div > div > div.col.col-md-9 > div.card > a > img{
@@ -107,14 +107,21 @@ body > header > nav > div > a > img{
 
 .favorite{
   text-decoration: none;
+  color: red;
 }
 
-#comment-card{
- border: solid;
- border: 1mm ridge rgba(0, 0, 0, .6);
-}
+// #comment-card{
+//  border: solid;
+//  border: 1mm ridge rgba(0, 0, 0, .6);
+// }
 
 #comment-header{
- background-color: #003366;
+ background-color: #66CCCC;
  width: 100%;
+}
+
+
+#solid{
+ border: solid;
+ border: black;
 }

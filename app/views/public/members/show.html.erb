@@ -4,8 +4,28 @@
       <%= render 'public/shared/info', member: @member %>
     </div>
     <div class="col col-8 offset-md-1">
-      <%= render 'public/shared/search' %><br>
-      <%= render 'public/shared/members_post', posts: @posts, post: @post %>
+    <a><%= render 'public/shared/search' %></a>
+      <% @posts.each do |post| %>
+    <div class="d-flex p-2 bd-highlight">
+      <%= link_to attachment_image_tag(post, :image, :fill, 250, 270),post_path(post), id:"solid" %>
+     <div class="card" style="width: 100%;">
+       <div class="card-header text-white">
+         <%= post.member.nickname %>さんの投稿
+       </div>
+       <ul class="list-group list-group-flush">
+         <li class="list-group-item">
+           投稿日時：<%= post.created_at.to_s(:datetime_jp) %>
+         </li>
+         <li class="list-group-item">タイトル：<%= post.title %></li>
+         <li class="list-group-item">タグ:<%= render 'public/shared/tag_list', tag_list: post.tag_list %></li>
+         <li class="list-group-item">本文：<%= post.body.truncate(140) %></li>
+         <div id="favorite-btn_<%= post.id %>">
+           <%= render partial: 'public/favorites/favorite-btn', locals: { post: post} %>
+         </div>
+       </ul>
+     </div>
+    </div>
+    <% end %>
     </div>
   </div>
 </div>
