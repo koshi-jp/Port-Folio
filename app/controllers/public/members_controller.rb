@@ -5,7 +5,7 @@ class Public::MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
-    @posts = @member.posts.all
+    @posts = @member.posts.all.order(created_at: :desc)
   end
 
   def edit
@@ -31,6 +31,11 @@ class Public::MembersController < ApplicationController
     member = Member.find(params[:id])
     @members = member.following_member
   end
+
+   def following_index
+    @posts = Post.where(member_id: [current_member.id, *current_member.following_member_ids])
+    .order(created_at: :desc)
+   end
 
   def follower
     member = Member.find(params[:id])

@@ -9,7 +9,7 @@
     <div class="d-flex p-2 bd-highlight">
       <%= link_to attachment_image_tag(post, :image, :fill, 250, 270),post_path(post), id:"solid" %>
      <div class="card" style="width: 100%;">
-       <div class="card-header text-white">
+       <div class="card-header" style="background: #FF9872; text-dark">
          <%= post.member.nickname %>さんの投稿
        </div>
        <ul class="list-group list-group-flush">
