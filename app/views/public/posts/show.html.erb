@@ -7,10 +7,10 @@
 
       <div class='col col-md-9 show-img'>
         <%= render 'public/shared/search' %><br>
-        <div class="d-flex flex-column bd-highlight h5">
+        <div class="d-flex flex-column bd-highlight">
           <a>投稿日時：<%= @post.created_at.to_s(:datetime_jp) %></a>
           <a>タイトル：<%= @post.title %></a>
-          <a>タグ：<%= render 'public/shared/tag_list', tag_list: @post.tag_list %></a>
+          <spam>タグ:<%= render 'public/shared/tag_list', tag_list: @post.tag_list %></span>
         </div>
 
       <div class="card" style="col-md-8 width: 100%;">
@@ -36,7 +36,7 @@
       <div class="col col-md-8 offset-md-3">
         <div class="form-group-comment">
           <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-            <%= f.text_area :comment,class: 'form-control', rows:'3', placeholder: "コメントをここに" %>
+            <%= f.text_area :comment,class: 'form-control', rows:'3', placeholder: "コメントを送ろう！！" %>
             <%= f.submit "送信する" %>
           <% end %>
         </div>
@@ -44,17 +44,26 @@
 
         <div class="col col-md-8 offset-md-3" id="comment-card">
           <% @post.post_comments.each do |post_comment| %>
-            <div class="text-white" id="comment-header">
-              <%= attachment_image_tag post_comment.member, :image, :fill, 40, 40 %>
-              <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= "　　" %>
-              <%= post_comment.member.nickname %>さんのコメント
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td class="comment-header" style= "background-color:white;">
+                    <%= attachment_image_tag post_comment.member, :image, :fill, 40, 40 %>
+                    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= "　　" %>
+                    <%= post_comment.member.nickname %>さんのコメント
+                    <% if post_comment.member == current_member %>
+                      <%= link_to "コメントを削除", post_post_comment_path(post_comment.post, post_comment),class: "far fa-trash-alt btn btn-danger", method: :delete %>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="comment-body" style= "background-color:white;"><%= post_comment.comment %></td>
+                </tr>
+              </tbody>
 
-              <% if post_comment.member == current_member %>
-                <%= link_to "コメントを削除", post_post_comment_path(post_comment.post, post_comment),class: "far fa-trash-alt btn btn-danger", method: :delete %>
-              <% end %>
-            </div>
-              <p class="comment-card-body h4"><%= post_comment.comment %></p>
+            </table>
+          <% end %>
+        </div>
         </div>
     </div>
-       <% end %>
 </div>

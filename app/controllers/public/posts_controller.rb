@@ -2,7 +2,11 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_member!
 
   def  index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
+    #タグ絞り込み
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}")
+    end
   end
 
   def  show

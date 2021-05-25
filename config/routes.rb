@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     post 'inquiry/thanks' => 'inquiry#thanks'     # 送信完了画面
 
     resources :members, only: [:show, :edit, :update, :destroy]do
-      get :following, :follower, on: :member
+      get :following, :follower, :following_index,on: :member
     end
     resources :posts, only: [:index, :show, :new, :create, :destroy] do
       resources :post_comments, only: [:create, :destroy]
