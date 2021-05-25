@@ -1,4 +1,6 @@
-<div class="d-flex p-1 bd-highlight index">
+
+  <% posts.each do |post| %>
+  <div class="d-flex p-2 bd-highlight">
 
     <%= link_to attachment_image_tag(post, :image, :fill, 250, 270),post_path(post) %>
 
@@ -12,12 +14,13 @@
         投稿日時：<%= post.created_at.to_s(:datetime_jp) %>
       </li>
 
-      <li class="list-group-item">タイトル：<%= post.title.truncate(20) %></li>
+      <li class="list-group-item">タイトル：<%= post.title %></li>
       <li class="list-group-item">タグ:<%= render 'public/shared/tag_list', tag_list: post.tag_list %></li>
-      <div class="favorite-btn_<%= post.id %>">
+      <div id="favorite-btn_<%= post.id %>">
         <%= render partial: 'public/favorites/favorite-btn', locals: { post: post} %>
       </div>
-      <li class="list-group-item">本文：<%= post.body.truncate(107) %></li>
+      <li class="list-group-item">本文：<%= post.body.truncate(140) %></li>
       </ul>
     </div>
-</div>
+    </div>
+  <% end %>
