@@ -12,11 +12,11 @@
     <li class="list-group-item bg-secondary text-white"><自己紹介></li>
     <li class="list-group-item bg-secondary text-white"><%= member.introduction %></li>
     <li class="list-group-item">
-      <a href="<%= following_member_path(@member) %>">
+      <a href="<%= following_member_path(member) %>">
         <%= member.following.count %> フォロー
       </a>
       <a>　</a>
-      <a href="<%= follower_member_path(@member) %>">
+      <a href="<%= follower_member_path(member) %>">
         <%= member.follower.count %> フォロワー
       </a>
     </li>
@@ -39,7 +39,7 @@
   </ul>
    <% if member.id == current_member.id %>
       <div class="align-self-center width-100%">
-        <%=link_to "ユーザー情報を編集する", edit_member_path, class: "fas fa-edit btn btn-outline-success" %>
+        <%=link_to "ユーザー情報を編集する", edit_member_path(member), class: "fas fa-edit btn btn-outline-success" %>
       </div>
     <% end %>
   </div>

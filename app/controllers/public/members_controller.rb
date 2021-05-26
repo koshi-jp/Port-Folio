@@ -15,7 +15,7 @@ class Public::MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     if @member.update(member_params)
-      redirect_to member_path
+      redirect_to member_path,notice: 'プロフィールを編集しました'
     else
       render 'edit'
     end
@@ -24,7 +24,7 @@ class Public::MembersController < ApplicationController
   def destroy
     member = Member.find(params[:id])
     member.destroy
-    redirect_to root_path
+    redirect_to root_path,notice: 'アカウントを削除しました　当サイトをご利用頂きありがとうございました'
   end
 
   def following

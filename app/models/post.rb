@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   end
   attachment :image
   acts_as_taggable
+  validates :title, :body, presence: true
 
   # 検索方法分岐
   def self.looks(search, word)
