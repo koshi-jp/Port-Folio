@@ -1,45 +1,44 @@
 <div class="container">
-<div class="row">
-<h2>検索結果</h2>
-
-<table class="table table-hover table-inverse">
-  <% if @range == "名前" %>
-    <tbody>
-      <% @members.each do |member| %>
-        <tr>
-          <td><%= attachment_image_tag(member, :image, :fill, 50, 50) %></td>
-          <td><%= member.nickname %></td>
-          <td>投稿数 : <%= member.posts.count %></td>
-          <td>フォロー数：<%= member.following.count %></td>
-          <td>フォロワー数 : <%= member.follower.count %></td>
-          <td><%= link_to 'Show', member_path(member), class: "member_#{member.id}" %></td>
-        </tr>
+  <div class="row">
+    <h2>検索結果</h2>
+    
+    <table class="table table-hover table-inverse">
+      <% if @range == "名前" %>
+        <tbody>
+          <% @members.each do |member| %>
+            <tr>
+              <td><%= attachment_image_tag(member, :image, :fill, 50, 50) %></td>
+              <td><%= member.nickname %></td>
+              <td>投稿数 : <%= member.posts.count %></td>
+              <td>フォロー数：<%= member.following.count %></td>
+              <td>フォロワー数 : <%= member.follower.count %></td>
+              <td><%= link_to 'Show', member_path(member), class: "member_#{member.id}" %></td>
+            </tr>
+          <% end %>
+          <div class='pagination'><%= paginate @members %></div>
+        </tbody>
+      <% else %>
+          <% @posts.each do |post| %>
+            <div class="d-flex p-1 bd-highlight index">
+              <%= link_to attachment_image_tag(post, :image, :fill, 300, 300, fallback: "bg-img.jpeg", size: "250x270"),post_path(post), id: "index-pic" %>
+    
+              <div class="card" style="width: 100%;">
+                <div class="card-header"  id="card-header">
+                  <i class="fas fa-camera"></i><%= link_to post.member.nickname, member_path(post.member) %>さんの投稿
+                </div>
+    
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">投稿日時：<%= post.created_at.to_s(:datetime_jp) %></li>
+                  <li class="list-group-item">タイトル：<%= post.title %></li>
+                  <li class="list-group-item">タグ:<%= render 'public/shared/tag_list', tag_list: post.tag_list %></li>
+                  <div id="favorite-btn_<%= post.id %>"><%= render partial: 'public/favorites/favorite-btn', locals: {post: post} %></div>
+                  <li class="list-group-item">本文：<%= post.body.truncate(107) %></li>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+          <div class='pagination'><%= paginate @posts %></div>
       <% end %>
-    </tbody>
-  <% else %>
-      <% @posts.each do |post| %>
-        <div class="d-flex p-1 bd-highlight index">
-          <%= link_to attachment_image_tag(post, :image, :fill, 300, 300),post_path(post) %>
-
-        <div class="card" style="width: 100%;">
-        <div class="card-header">
-          <%= post.member.nickname %>さんの投稿
-          <%= attachment_image_tag post.member, :image, :fill, 40, 40 %>
-        </div>
-
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">投稿日時：<%= post.created_at.to_s(:datetime_jp) %></li>
-          <li class="list-group-item">タイトル：<%= post.title %></li>
-          <li class="list-group-item">タグ:<%= render 'public/shared/tag_list', tag_list: post.tag_list %></li>
-          <div id="favorite-btn_<%= post.id %>">
-            <%= render partial: 'public/favorites/favorite-btn', locals: {post: post} %>
-          </div>
-          <li class="list-group-item">本文：<%= post.body.truncate(107) %></li>
-        </ul>
-      </div>
-    </div>
-      <% end %>
-  <% end %>
-</table>
-</div>
+    </table>
+  </div>
 </div>

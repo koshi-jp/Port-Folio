@@ -10,42 +10,46 @@
       </ul>
     </div>
    <% end %>
+   </div>
+
+  <div>
     <%= form_with model:@post, url:'/posts', local:true do |f| %>
       <form>
         <div class="form-group offset-sm-2">
-        <h4>タイトル</h4>
-
-        <%= f.text_field :title, class: "col-sm-4 form-control" %>
-        </div>
-
-        <div class="form-group offset-sm-2">
-        <h4>本文</h4>
-        <%= f.text_area :body, class: "col-sm-6 form-control" %>
-        </div>
-
-        <div class="form-group offset-sm-2">
-        <h4>タグ付け(なくても投稿できます　複数つける場合は　,　で区切って入力してください)</h4>
-        <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "col-sm-4 form-control" %>
-        </div>
-
-        <div class="form-group offset-sm-2">
           <h4>投稿画像</h4>
-          <%= f.attachment_field :image, class: "col-sm-3 form-control-static" %>
+          <%= f.attachment_field :image, class: "col-sm-6 form-control-static" %>
         </div>
+
         <div class="form-group offset-sm-2">
-         <img id="preview">
+         <img id="new-preview">
             <script>
               // 画像プレビュー
               $('#post_image').on('change', function (e) {
               var reader = new FileReader();
               reader.onload = function (e) {
-              $("#preview").attr('src', e.target.result);
+              $("#new-preview").attr('src', e.target.result);
               }
               reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
               });
             </script>
-        <br><%= f.submit '投稿' %>
         </div>
+
+        <div class="form-group offset-sm-2">
+          <h4>タイトル</h4>
+          <%= f.text_field :title, class: "col-sm-6 form-control" %>
+        </div>
+
+        <div class="form-group offset-sm-2">
+          <h4>本文</h4>
+          <%= f.text_area :body, class: "col-sm-6 form-control" %>
+        </div>
+
+        <div class="form-group offset-sm-2">
+          <h4>タグ付け(なくても投稿できます　複数つける場合は　,　で区切って入力してください)</h4>
+          <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "col-sm-6 form-control" %>
+        </div>
+        <br><%= f.submit '投稿', class: "col-sm-6 btn btn-primary offset-sm-2" %>
+
       </form>
     <% end %>
   </div>
