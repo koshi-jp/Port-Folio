@@ -7,10 +7,10 @@
     <a><%= render 'public/shared/search' %></a>
       <% @posts.each do |post| %>
     <div class="d-flex p-2 bd-highlight">
-      <%= link_to attachment_image_tag(post, :image, :fill, 250, 270),post_path(post), id:"solid" %>
+      <%= link_to attachment_image_tag(post, :image, :fill, 250, 270, fallback: "bg-img.jpeg", size: "250x270"),post_path(post), id:"index-pic" %>
      <div class="card" style="width: 100%;">
-       <div class="card-header" style="background: #FF9872; text-dark">
-         <%= post.member.nickname %>さんの投稿
+       <div class="card-header" div id="card-header">
+         <i class="fas fa-camera"></i>　<%= post.member.nickname %>さんの投稿
        </div>
        <ul class="list-group list-group-flush">
          <li class="list-group-item">
@@ -26,6 +26,7 @@
      </div>
     </div>
     <% end %>
+  <div class='pagination'><%= paginate @posts %></div>
     </div>
   </div>
 </div>

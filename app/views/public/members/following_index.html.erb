@@ -4,12 +4,11 @@
     <div class= "row">
           <% @posts.each do |post| %>
              <div class="d-flex p-1 bd-highlight index">
-             <%= link_to attachment_image_tag(post, :image, :fill, 250, 270),post_path(post) %>
+             <%= link_to attachment_image_tag(post, :image, :fill, 250, 270, fallback: "bg-img.jpeg", size: "250x270"),post_path(post), id: "index-pic"  %>
                <div class="card" style="width: 100%;">
-                 <div class="card-header text-dark" id="card-header">
-                   <%= post.member.nickname %>さんの投稿
+                <div class="card-header text-dark" id="card-header">
+                   <i class="fas fa-camera"></i><%= link_to post.member.nickname, member_path(post.member) %>さんの投稿
                  </div>
-
                <ul class="list-group list-group-flush">
                   <li class="list-group-item">
                     投稿日時：<%= post.created_at.to_s(:datetime_jp) %>
@@ -20,10 +19,11 @@
                   <div id="favorite-btn_<%= post.id %>">
                     <%= render partial: 'public/favorites/favorite-btn', locals: {post: post} %>
                   </div>
-                  <li class="list-group-item">本文：<%= post.body.truncate(107) %></li>
+                  <li class="list-group-item"><%= post.body.truncate(107) %></li>
                   </ul>
                 </div>
             </div>
         <% end %>
+        <div class='pagination'><%= paginate @posts %></div>
     </div>
 </div>

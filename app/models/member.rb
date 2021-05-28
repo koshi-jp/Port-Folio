@@ -1,10 +1,10 @@
 class Member < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  validates :nickname, presence: true
-  validates :introduction, presence: true
-  validates :playing_now, presence: true
-
+  validates :nickname, presence: true, length: { maximum: 17 }, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+  validates :playing_now, length: { maximum: 51 }, presence: true
+  validates :introduction, length: { maximum: 85 }, presence: true
 
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy

@@ -3,25 +3,42 @@
 
     <div class="bg-img">
       <p class="top-text">
-
         ようこそ、game snapへ！<br>
         このサイトは、ゲームで撮影した写真の投稿サイトです。<br>
         自分で撮った思い出の写真を投稿していいねやコメントをもらったり、<br>
         同じゲームをしている人の写真を見て楽しんだり、コメントして交流したり。<br>
-        皆さんで重い思いに楽しんでください!<br>
+        皆さんで思い思いに楽しんでください!<br>
         会員でない方も投稿の閲覧はできますが、<br>
         いいね👍やコメントをするには会員登録が必要です。<br>
       </p>
     </div>
   <figure class="text-center">
     <blockquote class="blockquote">
-        <p>投稿できるゲームソフトと著作権について</p>
-      </blockquote>
+      <p>game snapをご利用になられる際の注意事項</p>
+    </blockquote>
     <figcaption class="blockquote-footer">
       必ずお読み頂きルールを遵守して楽しく利用してください。
     </figcaption>
-    </figure>
-    <p class=h3>その他お問い合わせはこちらまで</p>
-    <%=link_to "お問い合わせ", inquiry_path, class: "fas fa-edit btn btn-outline-success" %>
+  </figure>
+
+  <div class="card text-center">
+  <div class="card-header">
+    投稿に使用できるゲームソフトと著作権について
+  </div>
+  <div class="card-body">
+    <p class="card-text">当サイトではゲームソフトに対する著作権保護の観点から、投稿に使用できるゲームソフトを指定させていただきます。<br>
+    判断基準としては、webサイトにゲームの素材を使うことについて明確に書かれているものです。<br>ひとつめは
+    <i class="fas fa-chevron-left"></i><a class="text-primary">ファイナルファンタジー XIV</a><i class="fas fa-chevron-right"></i>
+    著作権についてわかりやすい説明が書かれているので投稿前にご一読ください。</p>
+    <a href="https://support.jp.square-enix.com/rule.php?id=5381&la=0&tag=authc" class="btn btn-secondary">FINAL FANTASY XIVの著作権について</a><br>
+    <a class="card-text"><br>次にCAPCOM社のゲーム。</a><i class="fas fa-chevron-left"></i><a class="text-primary">モンスターハンターシリーズ</a><i class="fas fa-chevron-right"></i>
+    <i class="fas fa-chevron-left"></i><a class="text-primary">バイオハザードシリーズ</a><i class="fas fa-chevron-right"></i>
+    <p>こちらも該当サイトをご一読の上ご利用ください。</p>
+    <a href="https://www.capcom.co.jp/game/video-policy/" class="btn btn-secondary">CAPCOM社のゲーム全般著作権について</a>
+    <p>その他投稿したいものがある方はお問い合わせよりご連絡ください。</p>
+  </div>
+  </div>
+    <p class=h3>お問い合わせはこちらまで</p>
+    <%=link_to "お問い合わせ", inquiry_path, class: "fas fa-edit btn btn-outline-success",style:"width:50%;" %>
   </div>
 </div>

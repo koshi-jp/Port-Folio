@@ -5,7 +5,7 @@ class Public::MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
-    @posts = @member.posts.all.order(created_at: :desc)
+    @posts = @member.posts.page(params[:page]).reverse_order.per(20)
   end
 
   def edit
@@ -15,7 +15,7 @@ class Public::MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     if @member.update(member_params)
-      redirect_to member_path
+      redirect_to member_path,notice: 'プロフィールを編集しました'
     else
       render 'edit'
     end
@@ -24,22 +24,24 @@ class Public::MembersController < ApplicationController
   def destroy
     member = Member.find(params[:id])
     member.destroy
-    redirect_to root_path
+    redirect_to root_path,notice: 'アカウントを削除しました　当サイトをご利用頂きありがとうございました'
   end
 
   def following
     member = Member.find(params[:id])
     @members = member.following_member
+    @members = @members.page(params[:page]).reverse_order.per(20)
   end
 
    def following_index
     @posts = Post.where(member_id: [current_member.id, *current_member.following_member_ids])
-    .order(created_at: :desc)
+    @posts = @posts.page(params[:page]).reverse_order.per(4)
    end
 
   def follower
     member = Member.find(params[:id])
     @members = member.follower_member
+    @members = @members.page(params[:page]).reverse_order.per(20)
   end
 
   private

@@ -3,8 +3,6 @@
       <div class='col col-md-3'>
         <%= render 'public/shared/info', member: @member %>
       </div>
-
-
       <div class='col col-md-9 show-img'>
         <%= render 'public/shared/search' %><br>
         <div class="d-flex flex-column bd-highlight">
@@ -13,10 +11,10 @@
           <spam>タグ:<%= render 'public/shared/tag_list', tag_list: @post.tag_list %></span>
         </div>
 
-      <div class="card" style="col-md-8 width: 100%;">
-        <a class="card-img-top"><%= attachment_image_tag @post, :image %></a>
+      <div class="card" style="col-md-8">
+        <a class="card-img-top"><%= attachment_image_tag @post, :image, id: "pic1" %></a>
         <div class="card-body bg-light">
-          <div class="card-text h4"><%= @post.body %></div>
+          <div class="card-text h4"><%= safe_join(@post.body.split("\n"),tag(:br)) %></div>
         </div>
       </div>
 
@@ -27,26 +25,24 @@
         </div>
           <% if @post.member == current_member %>
             <a class="d-grid justify-content-md-end">
-              <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, class: 'btn btn-danger ', "data-confirm" => "本当に削除しますか？" %>
+              <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, class: 'btn btn-outline-danger ', style:"width: 100%;", "data-confirm" => "本当に削除しますか？" %>
             </a>
           <% end %>
       </div>
-    </div>
-
-      <div class="col col-md-8 offset-md-3">
+      <div class="col">
         <div class="form-group-comment">
           <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
             <%= f.text_area :comment,class: 'form-control', rows:'3', placeholder: "コメントを送ろう！！" %>
-            <%= f.submit "送信する" %>
+            <%= f.submit "送信する",class: "btn-primary", style:"width: 30%;" %>
           <% end %>
         </div>
       </div>
 
-        <div class="col col-md-8 offset-md-3" id="comment-card">
+        <div class="col" id="comment-card">
           <% @post.post_comments.each do |post_comment| %>
             <table class="table">
               <tbody>
-                <tr>
+                <tr><br>
                   <td class="comment-header" style= "background-color:white;">
                     <%= attachment_image_tag post_comment.member, :image, :fill, 40, 40 %>
                     <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= "　　" %>
@@ -63,7 +59,7 @@
 
             </table>
           <% end %>
+           </div>
         </div>
         </div>
     </div>
-</div>

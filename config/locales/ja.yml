@@ -1,11 +1,23 @@
 ja:
   activerecord:
+    models:
+      member: 会員情報
+      post:
+    attributes:
+      post:
+        title: タイトル
+        body: 本文
+        image_id: 投稿画像
+      member:
+        nickname: ニックネーム
+        image_id: プロフィール画像
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+
   date:
     abbr_day_names:
     - 日
@@ -204,3 +216,10 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."

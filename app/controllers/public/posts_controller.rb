@@ -2,10 +2,12 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_member!
 
   def  index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.page(params[:page]).reverse_order
+    # @posts = Post.all.order(created_at: :desc)
     #タグ絞り込み
     if params[:tag_name]
       @posts = Post.tagged_with("#{params[:tag_name]}")
+      @posts = @posts.page(params[:page]).reverse_order.per(30)
     end
   end
 
@@ -14,6 +16,7 @@ class Public::PostsController < ApplicationController
     @member = Member.find(@post.member.id)
     @posts = Post.all
     @post_comment = PostComment.new
+    @member_posts = @member.posts.all
   end
 
   def  new
@@ -23,14 +26,17 @@ class Public::PostsController < ApplicationController
   def  create
     @post= Post.new(post_params)
     @post.member_id = current_member.id
-    @post.save
-    redirect_to root_path
+    if @post.save
+       redirect_to posts_path,notice: '投稿が作成されました'
+    else
+       render action: :new
+    end
   end
 
   def  destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
+    redirect_to posts_path,notice: '投稿を削除しました'
   end
 
  private

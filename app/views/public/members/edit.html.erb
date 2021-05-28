@@ -1,19 +1,17 @@
-<div class="row">
-      <div class="col-sm-12">
-
-        <h3 class="col-sm-2 bg-light">会員情報編集</h3>
-
+<div class="container">
+    <%= render 'public/shared/error_messages', resource: @member %>
+  <div class="row">
+    <div class="col-sm-8 offset-md-2">
+      <h3 class="col-sm-4 offset-md-2">会員情報編集</h3>
         <%= form_with(model:@member, url: {controller: 'members', action: 'update' }, local: true ,method: :patch) do |f| %>
-
-          <div class="row edit-form">
-
+          <div class="edit-form">
             <div class="form-group col-sm-12">
               <%= f.label :"ニックネーム", class: "col-sm-3 control-label" %>
               <%= f.text_field :nickname, class: "col-sm-4 form-control-static name" %>
             </div>
 
             <div class="form-group col-sm-12">
-              <%= f.label :"今一番プレイしているゲーム", class: "col-sm-3 control-label" %>
+              <%= f.label :"今一番ハマっているゲーム", class: "col-sm-3 control-label" %>
               <%= f.text_field :playing_now, class: "col-sm-4 form-control-static" %>
             </div>
 
@@ -32,28 +30,24 @@
               <%= f.label :"プロフィール画像", class: "col-sm-3 control-label" %>
               <%= f.attachment_field :image, class: "col-sm-4 form-control-static image"%>
             </div>
-              <img id="preview" class="offset-sm-3">
+            <!--画像プレビュー-->
+            <img id="preview" class="offset-sm-3">
                 <script>
-                      // inputのidから情報の取得
                       $('#member_image').on('change', function (e) {
-                  // ここから既存の画像のurlの取得
                       var reader = new FileReader();
                       reader.onload = function (e) {
                           $("#preview").attr('src', e.target.result);
                       }
-                  // ここまで
-                      reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
+                      reader.readAsDataURL(e.target.files[0]);
                   });
                 </script>
-
-
-
 　　　　　</div>
 
-          <div class="col offset-md-3">
-            <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+          <div class="col offset-md-2">
+            <%= f.submit "編集内容を保存", class: "btn btn-success" %><%= "　　　　"%>
             <%= link_to "アカウントを削除する", member_path, method: :delete, class:"btn btn-danger", data: {confirm: "本当にアカウントを削除しますか？"} %>
           </div>
         <% end %>
-     </div>
-   </div>
+    </div>
+  </div>
+</div>

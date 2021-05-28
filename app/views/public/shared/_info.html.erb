@@ -1,46 +1,41 @@
-<div class='info'>
-  <h4 class="text-center">メンバー情報</h4>
-  <div class="card" style="height: 10rem;">
-    <%= attachment_image_tag(member, :image, :fill, 300, 300) %>
-  <ul class="list-group list-group-flush text-center">
-    <li class="list-group-item bg-secondary text-white">
-      <a href="<%= member_path(member) %>", class= "editlink">
-        <%= member.nickname %></li>
-      </a>
-    <li class="list-group-item bg-secondary text-white"><今一番ハマっているゲームは？></li>
-    <li class="list-group-item bg-secondary text-white"><%= member.playing_now %></li>
-    <li class="list-group-item bg-secondary text-white"><自己紹介></li>
-    <li class="list-group-item bg-secondary text-white"><%= member.introduction %></li>
-    <li class="list-group-item">
-      <a href="<%= following_member_path(@member) %>">
-        <%= member.following.count %> フォロー
-      </a>
-      <a>　</a>
-      <a href="<%= follower_member_path(@member) %>">
-        <%= member.follower.count %> フォロワー
-      </a>
-    </li>
-
-    <% unless member == current_member %>
-      <li class="list-group-item bg-light">
-        <% if current_member.following?(member) %>
-          <%= link_to unfollow_path(member.id), method: :delete, :style=>"color:#E0245E;" do %>
-            フォローを外す
-          <% end %>
-        <% else %>
-          <%= link_to follow_path(member.id), method: :post, :style=>"color:#003366;" do %>
-            フォローする<i class="fas fa-hand-holding-heart"></i>
-          <% end %>
-        <% end %>
+<div class='info'><br>
+  <h4 class="text-center"><i class="fas fa-portrait"></i>　投稿者プロフィール</h4>
+  <div class="card">
+    <%= attachment_image_tag(member, :image, :fill, 300, 300, fallback: "no_image.jpg") %>
+    <ul class="list-group list-group-flush text-center">
+      <li class="list-group-item bg-secondary text-white">
+        <a href="<%= member_path(member) %>", class= "editlink">
+          <%= member.nickname %></li>
+        </a>
+      <li class="list-group-item bg-secondary text-white"><i class="fab fa-playstation"></i>今一番ハマっているゲームは？<i class="fab fa-xbox"></i></li>
+      <li class="list-group-item bg-secondary text-white"><%= member.playing_now %></li>
+       <li class="list-group-item bg-secondary text-white"><i class="fas fa-angle-left"></i>自己紹介<i class="fas fa-angle-right"></i></li>
+      <li class="list-group-item bg-secondary text-white"><%= member.introduction %></li>
+      <li class="list-group-item bg-light text-dark">投稿した数　<%= member.posts.count %></li>
+      <li class="list-group-item">
+        <a href="<%= following_member_path(member) %>"><%= member.following.count %> フォロー</a>
+        <a><i class="fas fa-child text-primary"></i></a>
+        <a href="<%= follower_member_path(member) %>"><%= member.follower.count %> フォロワー</a>
       </li>
-    <% end %>
-
-
+        <% unless member == current_member %>
+          <li class="list-group-item bg-light">
+            <% if current_member.following?(member) %>
+              <%= link_to unfollow_path(member.id), method: :delete, :style=>"color:#E0245E;" do %>
+                フォローを外す
+              <% end %>
+            <% else %>
+              <%= link_to follow_path(member.id), method: :post, :style=>"color:#003366;" do %>
+                フォローする<i class="fas fa-hand-holding-heart"></i>
+              <% end %>
+            <% end %>
+          </li>
+        <% end %>
   </ul>
+  </div>
    <% if member.id == current_member.id %>
-      <div class="align-self-center width-100%">
-        <%=link_to "ユーザー情報を編集する", edit_member_path, class: "fas fa-edit btn btn-outline-success" %>
+      <div class="align-self-center">
+        <%=link_to "ユーザー情報を編集する", edit_member_path(member), class: "fas fa-edit btn bg-success text-white", style: "width: 100%;"  %>
       </div>
     <% end %>
-  </div>
+
 </div>
