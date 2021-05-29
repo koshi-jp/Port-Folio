@@ -20,7 +20,7 @@
                   <div id="favorite-btn_<%= post.id %>">
                     <%= render partial: 'public/favorites/favorite-btn', locals: {post: post} %>
                   </div>
-                  <li class="list-group-item">本文：<%= post.body.truncate(107) %></li>
+                  <li class="list-group-item"><%= post.body.truncate(107) %></li>
                   </ul>
                 </div>
             </div>

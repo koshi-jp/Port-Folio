@@ -35,7 +35,7 @@ class Public::MembersController < ApplicationController
 
    def following_index
     @posts = Post.where(member_id: [current_member.id, *current_member.following_member_ids])
-    @posts = @posts.page(params[:page]).reverse_order.per(4)
+    @posts = @posts.page(params[:page]).reverse_order.per(20)
    end
 
   def follower
