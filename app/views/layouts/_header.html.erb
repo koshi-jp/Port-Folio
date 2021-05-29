@@ -13,7 +13,7 @@
               <li class=nav-list style="margin-left: 10px;" ><i class="far fa-newspaper btn btn-light"><%= link_to ' 投稿一覧', posts_path, class: 'text-dark' %></i></li>
               <li class=nav-list style="margin-left: 10px;" ><i class="fab fa-connectdevelop btn btn-light"><%= link_to ' タイムライン', following_index_member_path(current_member), class: "text-dark" %></i></li>
               <li class=nav-list style="margin-left: 10px;" ><i class="fas fa-user btn btn-light"><%= link_to ' マイページ', member_path(current_member), class: "text-dark" %></i></li>
-              <li class=nav-list style="margin-left: 10px;" ><i class="fas fa-sign-out-alt btn btn-light"><%= link_to ' ログアウト', destroy_member_session_path, method: :delete, class: "text-dark" %></i></li>
+              <li class=nav-list style="margin-left: 10px;" ><%= link_to ' ログアウト', destroy_member_session_path, method: :delete, class: "btn btn-light text-dark" %></li>
               <li class="nav-item nav-link text-light">ログイン中：<%= current_member.nickname %><small>さん</small><i class="fas fa-smile-beam"></i></li>
             <% elsif admin_signed_in? %>
               <li class=nav-list><%= link_to ' メンバー一覧', admin_members_path, class: 'btn btn-outline-secondary text-white' %></li>
