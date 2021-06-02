@@ -15,6 +15,7 @@
         <a class="card-img-top"><%= attachment_image_tag @post, :image, id: "pic1" %></a>
         <div class="card-body bg-light">
           <div class="card-text h4"><%= safe_join(@post.body.split("\n"),tag(:br)) %></div>
+          <p class="sentiment-score">本文の感情分析スコア[<%= @post.score %>]</p>
         </div>
       </div>
 
