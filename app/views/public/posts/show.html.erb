@@ -5,13 +5,13 @@
       </div>
       <div class='col col-md-9 show-img'>
         <%= render 'public/shared/search' %><br>
-        <div class="d-flex flex-column bd-highlight">
+        <div class="d-flex flex-column bd-highlight shadow-lg">
           <a>投稿日時：<%= @post.created_at.to_s(:datetime_jp) %></a>
           <a>タイトル：<%= @post.title %></a>
           <spam>タグ:<%= render 'public/shared/tag_list', tag_list: @post.tag_list %></span>
         </div>
 
-      <div class="card" style="col-md-8">
+      <div class="card shadow" style="col-md-8">
         <a class="card-img-top"><%= attachment_image_tag @post, :image, id: "pic1" %></a>
         <div class="card-body bg-light">
           <div class="card-text h4"><%= safe_join(@post.body.split("\n"),tag(:br)) %></div>
@@ -30,17 +30,17 @@
           <% end %>
       </div>
       <div class="col">
-        <div class="form-group-comment">
+        <div class="form-group-comment shadow">
           <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
             <%= f.text_area :comment,class: 'form-control', rows:'3', placeholder: "コメントを送ろう！！" %>
-            <%= f.submit "送信する",class: "btn-primary", style:"width: 30%;" %>
+            <%= f.submit "送信する",class: "btn-primary", style:"width: 100%;" %>
           <% end %>
         </div>
       </div>
 
         <div class="col" id="comment-card">
           <% @post.post_comments.each do |post_comment| %>
-            <table class="table">
+            <table class="table shadow">
               <tbody>
                 <tr><br>
                   <td class="comment-header" style= "background-color:white;">

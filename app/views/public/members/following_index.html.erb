@@ -3,7 +3,7 @@
 
     <div class= "row">
           <% @posts.each do |post| %>
-             <div class="d-flex p-1 bd-highlight index">
+             <div class="d-flex p-1 bd-highlight index shadow">
              <%= link_to attachment_image_tag(post, :image, :fill, 250, 270, fallback: "bg-img.jpeg", size: "250x270"),post_path(post), id: "index-pic"  %>
                <div class="card" style="width: 100%;">
                 <div class="card-header text-dark" id="card-header">
