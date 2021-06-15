@@ -15,7 +15,7 @@
             <li class="list-group-item">投稿日時：<%= post.created_at.to_s(:datetime_jp) %></li>
             <li class="list-group-item">タイトル：<%= post.title.truncate(20) %></li>
             <li class="list-group-item">タグ:<%= render 'public/shared/tag_list', tag_list: post.tag_list %></li>
-            <%= render partial: 'public/favorites/favorite-btn', locals: {post: post} %>
+            <div id="favorite-btn_<%= post.id %>"><%= render partial: 'public/favorites/favorite-btn', locals: {post: post} %></div>
             <li class="list-group-item"><%= post.body.truncate(107) %></li>
           </ul>
         </div>
