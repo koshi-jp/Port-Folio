@@ -33,11 +33,15 @@ body {
      padding-bottom: 120px; /*フッターの高さと同じ*/
 }
 
+#header{
+    background-color: #BBBBBB;
+}
 #footer{
     width: 100%;
     text-align: center;
     position: absolute;
     bottom: 0;
+    background-color: #BBBBBB;
 }
 // リンクの下線を削除
 a {
@@ -46,7 +50,7 @@ a {
 }
 
 #card-header{
-    background-color: antiquewhite;;
+    background-color: antiquewhite;
 }
 
 // showページ写真
@@ -130,3 +134,13 @@ object-fit: cover;
 .pagination {
   padding-left: 20%;
 }
+
+
+#topic {
+  position: relative;
+  padding: 0.1em 0.5em;
+  background: -webkit-linear-gradient(to right, rgb(255, 186, 115), transparent);
+  background: linear-gradient(to right, rgb(255, 186, 115), transparent);
+  color: #545454;
+}
+
