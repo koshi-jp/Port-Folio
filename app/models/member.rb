@@ -19,6 +19,11 @@ class Member < ApplicationRecord
   has_many :following_member, through: :following, source: :follower
   has_many :follower_member, through: :follower, source: :following
 
+  # 以下通知機能
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
+
   def follow(member_id)
     following.create(follower_id: member_id)
   end
@@ -31,6 +36,17 @@ class Member < ApplicationRecord
     following_member.include?(member_id)
   end
 
+  def create_notification_follow!(current_member)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_member.id, id, 'follow'])
+    if temp.blank?
+      notification = current_member.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
+  
   # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"

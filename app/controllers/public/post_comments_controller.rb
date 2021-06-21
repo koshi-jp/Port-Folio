@@ -3,9 +3,11 @@ before_action :authenticate_member!
 
   def create
     post = Post.find(params[:post_id])
-    comment = current_member.post_comments.new(post_comment_params)
-    comment.post_id = post.id
-    comment.save
+    post_comment = current_member.post_comments.new(post_comment_params)
+    @post = post_comment.post
+    post_comment.post_id = post.id
+    post_comment.save
+    post.create_notification_comment!(current_member, post_comment.id)
     redirect_to post_path(post),notice: 'コメントが作成されました'
   end
 

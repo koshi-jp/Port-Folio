@@ -1,0 +1,35 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+<div class= "col-md-6 mx-auto">
+  <div class= "form-inline">
+    <span>
+      <%= attachment_image_tag visitor, :image, :fill, 40, 40 %>
+      <%= link_to visitor.nickname, member_path(visitor) %>
+      <%= 'さんが' %>
+
+      <% case notification.action %>
+        <% when 'follow' then %>
+          <%= "あなたをフォローしました" %>
+        <% when 'favorite' then %>
+          <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
+          <%= "にいいねしました" %>
+        <% when 'comment' then %>
+          <% if notification.post.member_id == visited.id %>
+            <%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
+            <%= "にコメントしました" %>
+            <p class="text-muted mb-0"><%= PostComment.find_by(id: notification.post_comment_id)&.comment %></p>
+          <% else %>
+            <span>
+              <%= link_to 'あなたがコメントした投稿', post_path(notification.post) %>
+                <%= "にコメントしました" %>
+                 <p class="text-muted mb-0"><%= PostComment.find_by(id: notification.post_comment_id)&.comment %></p>
+            </span>
+          <% end %>
+      <% end %>
+    </span>
+  </div>
+  <div class="small text-muted text-right" >
+    <%= time_ago_in_words(notification.created_at).upcase %>
+  </div>
+  <hr>
+</div>
