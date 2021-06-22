@@ -14,17 +14,22 @@ class Public::MembersController < ApplicationController
 
   def update
     @member = Member.find(params[:id])
-    if @member.update(member_params)
+    if @member.id == current_member.id
+      @member.update(member_params)
       redirect_to member_path,notice: 'プロフィールを編集しました'
     else
-      render 'edit'
+      redirect_to root_path,notice: '他人のプロフィールは編集できません'
     end
   end
 
   def destroy
-    member = Member.find(params[:id])
-    member.destroy
-    redirect_to root_path,notice: 'アカウントを削除しました　当サイトをご利用頂きありがとうございました'
+    @member = Member.find(params[:id])
+    if @member.id == current_member.id
+      member.destroy
+      redirect_to root_path,notice: 'アカウントを削除しました　当サイトをご利用頂きありがとうございました'
+    else
+      redirect_to root_path,notice: '他人のアカウントは削除できません'
+    end
   end
 
   def following

@@ -36,8 +36,12 @@ class Public::PostsController < ApplicationController
 
   def  destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path,notice: '投稿を削除しました'
+    if @post.member_id == current_member.id
+      @post.destroy
+      redirect_to posts_path,notice: '投稿を削除しました'
+    else
+      render action: :new
+    end
   end
 
  private
