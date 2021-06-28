@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_for :admins, skip: :all
   devise_scope :admin do
     get 'admin/sign_in' => 'admin/sessions#new', as: 'new_admin_session'
@@ -10,11 +9,11 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-      resources :homes, only: [:top]
-      resources :members, only: [:index,:show, :edit, :update, :destroy]
-      resources :posts, only: [:index, :show, :destroy] do
-        resources :post_comments, only: [:destroy]
-      end
+    resources :homes, only: [:top]
+    resources :members, only: [:index, :show, :edit, :update, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :post_comments, only: [:destroy]
+    end
   end
 
   devise_for :members, skip: :all
@@ -36,17 +35,14 @@ Rails.application.routes.draw do
     post 'inquiry/confirm' => 'inquiry#confirm'   # 確認画面
     post 'inquiry/thanks' => 'inquiry#thanks'     # 送信完了画面
     resources :notifications, only: :index
-    resources :members, only: [:show, :edit, :update, :destroy]do
-      get :following, :follower, :following_index,on: :member
+    resources :members, only: [:show, :edit, :update, :destroy] do
+      get :following, :follower, :following_index, on: :member
     end
     resources :posts, only: [:index, :show, :new, :create, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
-
   end
-
 end
 
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

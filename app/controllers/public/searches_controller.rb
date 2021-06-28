@@ -1,6 +1,5 @@
 class Public::SearchesController < ApplicationController
-
-   def search
+  def search
     @range = params[:range]
 
     if @range == "名前"
@@ -10,6 +9,5 @@ class Public::SearchesController < ApplicationController
       @posts = Post.looks(params[:search], params[:word])
       @posts = @posts.page(params[:page]).reverse_order.per(20)
     end
-   end
-
+  end
 end
