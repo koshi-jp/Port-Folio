@@ -8,7 +8,7 @@ class Public::HomesController < ApplicationController
       member.nickname = "ゲスト"
       member.introduction = "ゲストユーザーです。"
       member.playing_now = "テトリス"
-  end
+    end
     sign_in member
     redirect_to posts_path, notice: 'ゲストユーザーとしてログインしました。'
   end

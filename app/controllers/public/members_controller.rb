@@ -15,9 +15,9 @@ class Public::MembersController < ApplicationController
     @member = Member.find(params[:id])
     if @member.id == current_member.id
       @member.update(member_params)
-      redirect_to member_path,notice: 'プロフィールを編集しました'
+      redirect_to member_path, notice: 'プロフィールを編集しました'
     else
-      redirect_to root_path,notice: '他人のプロフィールは編集できません'
+      redirect_to root_path, notice: '他人のプロフィールは編集できません'
     end
   end
 
@@ -25,9 +25,9 @@ class Public::MembersController < ApplicationController
     @member = Member.find(params[:id])
     if @member.id == current_member.id
       member.destroy
-      redirect_to root_path,notice: 'アカウントを削除しました　当サイトをご利用頂きありがとうございました'
+      redirect_to root_path, notice: 'アカウントを削除しました　当サイトをご利用頂きありがとうございました'
     else
-      redirect_to root_path,notice: '他人のアカウントは削除できません'
+      redirect_to root_path, notice: '他人のアカウントは削除できません'
     end
   end
 
@@ -37,10 +37,10 @@ class Public::MembersController < ApplicationController
     @members = @members.page(params[:page]).reverse_order.per(20)
   end
 
-   def following_index
+  def following_index
     @posts = Post.where(member_id: [current_member.id, *current_member.following_member_ids])
     @posts = @posts.page(params[:page]).reverse_order.per(20)
-   end
+  end
 
   def follower
     member = Member.find(params[:id])

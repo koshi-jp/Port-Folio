@@ -30,6 +30,7 @@ class Post < ApplicationRecord
       notification.save if notification.valid?
     end
   end
+
   def create_notification_comment!(current_member, post_comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     temp_ids = PostComment.select(:member_id).where(post_id: id).where.not(member_id: current_member.id).distinct
@@ -58,13 +59,13 @@ class Post < ApplicationRecord
   # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
-      @post = Post.where("title LIKE?","#{word}")
+      @post = Post.where("title LIKE?", "#{word}")
     elsif search == "forward_match"
-      @post = Post.where("title LIKE?","#{word}%")
+      @post = Post.where("title LIKE?", "#{word}%")
     elsif search == "backward_match"
-      @post = Post.where("title LIKE?","%#{word}")
+      @post = Post.where("title LIKE?", "%#{word}")
     elsif search == "partial_match"
-      @post = Post.where("title LIKE?","%#{word}%")
+      @post = Post.where("title LIKE?", "%#{word}%")
     else
       @post = Post.all
     end
